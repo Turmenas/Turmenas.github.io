@@ -5,26 +5,21 @@
   }
 
 :root { 
-    --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-    --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-    --heading-color: #050d18; /* Color for headings, subheadings and title throughout the website */
-    --accent-color: #149ddd; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-    --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-    --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+    --background-color: #ffffff; 
+    --default-color: #272829; 
+    --heading-color: #050d18; 
+    --accent-color: #149ddd; 
+    --surface-color: #ffffff; 
+    --contrast-color: #ffffff; 
   }
 
 :root {
-    --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
-    --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
-    --nav-mobile-background-color: #040b14; /* Used as the background color for mobile navigation menu */
-    --nav-dropdown-background-color: #040b14; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-    --nav-dropdown-color: #a8a9b4; /* Used for navigation links of the dropdown items in the navigation menu. */
-    --nav-dropdown-hover-color: #ffffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
-  }
-
-  .light-background {
-    --background-color: #f4fafd;
-    --surface-color: #ffffff;
+    --nav-color: #a8a9b4; 
+    --nav-hover-color: #ffffff; 
+    --nav-mobile-background-color: #040b14; 
+    --nav-dropdown-background-color: #040b14; 
+    --nav-dropdown-color: #a8a9b4; 
+    --nav-dropdown-hover-color: #ffffff; 
   }
   
   .dark-background {
@@ -34,8 +29,21 @@
     --surface-color: #151f2b;
     --contrast-color: #ffffff;
   }
+
+  .darkmode { 
+    --background-color: #121212; 
+    --default-color: #e0e0e0;   
+    --heading-color: #ffffff;   
+    --accent-color: #149ddd;   
+    --surface-color: #1e1e1e;  
+    --contrast-color: #000000;
+  }
   
 /*------------------------------Style--------------------------------*/
+*{
+  scroll-behavior: smooth;
+}
+
 body {
     color: var(--default-color);
     background-color: var(--background-color);
@@ -49,7 +57,7 @@ a {
   }
 
   a:hover {
-    color: color-mix(in srgb, var(--accent-color), transparent 25%);
+    color: var(--accent-color)
     text-decoration: none;
   }
 
@@ -128,15 +136,16 @@ a {
   background: var(--accent-color);
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
 
   .header~main,
   .header~#footer {
-    margin-left: 330px;
+    margin-left: 320px;
+    padding-left: 10px;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1099px) {
   .header {
     left: -100%;
   }
@@ -180,8 +189,50 @@ a {
   color: var(--accent-color);
 }
 
+/*------------------------------BUTTONS--------------------------------*/
+#theme-toggle, #scroll-toggle{
+  background: var(--default-color);
+  height: 60px;
+  width: 60px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9997;
+  transition: all 0.5s ease 0s;
+}
 
+#scroll-toggle{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
 
+#theme-toggle:hover,
+#scroll-toggle:hover{
+  cursor: pointer;
+}
+
+#theme-toggle svg,
+#scroll-toggle svg{
+  fill: var(--accent-color)
+}
+
+#theme-toggle svg:last-child{
+  display: none;
+}
+
+.darkmode #theme-toggle svg:first-child{
+  display: none;
+}
+
+.darkmode #theme-toggle svg:last-child{
+  display: block;
+}
 /*------------------------------FOOTER--------------------------------*/
 
 .footer {
