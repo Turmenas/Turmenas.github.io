@@ -10,7 +10,8 @@
     --heading-color: #050d18; 
     --accent-color: #149ddd; 
     --surface-color: #ffffff; 
-    --contrast-color: #ffffff; 
+    --contrast-color: #ffffff;
+    --social-color: #ffffff;  
   }
 
 :root {
@@ -37,6 +38,7 @@
     --accent-color: #149ddd;   
     --surface-color: #1e1e1e;  
     --contrast-color: #000000;
+    --social-color: #ffffff; 
   }
   
 /*------------------------------Style--------------------------------*/
@@ -253,7 +255,9 @@ a {
   }
 
   .footer .social-links a{
-    background: var(--default-color);
+    background: var(--social-color);
+    border: 2px solid;
+    border-color: var(--default-color);
     height: 70px;
     width: 70px;
     padding: 0;
@@ -265,6 +269,10 @@ a {
     align-items: center;
     z-index: 9997;
     transition: all 0.5s ease 0s;
+  }
+
+  .footer .social-links a svg{
+    fill: color var(--contrast-color)
   }
   
   .footer .social-links a:hover {
