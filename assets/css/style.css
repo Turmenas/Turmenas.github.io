@@ -85,7 +85,8 @@ a {
     z-index: 997;
     padding: 0px 15px;
     transition: 0.3s ease-in-out;
-    border-right: 1px solid 
+    border-right: 1px solid;
+    overflow: hidden;
 }
 
 .header .profile-img img {
