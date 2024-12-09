@@ -278,3 +278,26 @@ a {
   .footer .social-links a:hover {
     background: var(--accent-color);
   }
+/*------------------------------CLOCK--------------------------------*/
+
+
+.clock-container{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.clock{
+ border: 1px solid;
+ width: 350px;
+ padding: 10px ;
+ border-color: var(--default-color);
+ border-radius: 10px;
+ background-color: var(--surface-color);
+ display: flex;
+ align-self: center;
+ justify-content: center;
+ position: relative;
+ text-align: center; 
+ font-size: 50px;
+}
