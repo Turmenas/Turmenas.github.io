@@ -41,26 +41,29 @@
     --social-color: #ffffff; 
   }
   
+  .hidden{
+    display: none;
+  }
 /*------------------------------Style--------------------------------*/
 *{
   scroll-behavior: smooth;
 }
 
-body {
+  body {
     color: var(--default-color);
     background-color: var(--background-color);
     font-family: var(--default-font);
     transition: 0.3s ease-in-out;
 }
 
-a {
+  a {
     color: var(--accent-color);
     text-decoration: none;
     transition: 0.3s;
   }
 
   a:hover {
-    color: var(--accent-color)
+    color: var(--accent-color);
     text-decoration: none;
   }
 
@@ -74,6 +77,10 @@ a {
     font-family: var(--heading-font);
   }
 
+  video {
+    max-width: 100%;
+    height: auto;
+}
 /*------------------------------HEADER--------------------------------*/
 
 .header {
@@ -300,4 +307,55 @@ a {
  position: relative;
  text-align: center; 
  font-size: 50px;
+}
+
+
+/*------------------------------Contact-Form------------------------------*/
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#contact-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+#contact-form input {
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: var(--default-color);
+}
+
+#submit-btn {
+  background-color: var(--surface-color);
+  color: var(--heading-color);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#submit-btn:hover {
+  background-color: var(--accent-color);
+}
+
+#result {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--default-color);
+  border-radius: 10px;
+  font-size: 16px;
 }
