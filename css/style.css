@@ -1,0 +1,409 @@
+/* ==========================================================================
+   CSS RESET & VARIABLES (AAA Accessibility Standards)
+   ========================================================================== */
+:root {
+    /* Colors - High Contrast for AAA (Dark Theme) */
+    --bg-color: #121212;          /* Labai tamsus fonas */
+    --surface-color: #1e1e1e;     /* Kortelių/Lentelių fonas */
+    --text-color: #f5f5f5;        /* Beveik baltas tekstas (Contrast ratio > 15:1) */
+    --text-muted: #b0b0b0;        /* Pagalbinis tekstas */
+    --accent-color: #5ce1e6;      /* Corris Blue (Prisitaikyta tamsiam fonui) */
+    --accent-hover: #3bc2c8;      
+    --error-color: #ff5252;
+    --focus-ring: 3px solid #ffab00; /* Ryškus geltonas fokusas klaviatūros naršymui */
+
+    /* Typography using rem for 300% zoom scaling (WCAG 1.4) */
+    --font-base: 1rem;            /* 16px */
+    --font-h1: 2.5rem;            /* 40px */
+    --font-h2: 1.75rem;           /* 28px */
+    --font-h3: 1.25rem;           /* 20px */
+}
+
+/* Base Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & UTILITIES
+   ========================================================================== */
+/* Skip to main content link (WCAG 2.1 Operable) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent-color);
+    color: #000;
+    padding: 8px;
+    z-index: 100;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: var(--focus-ring);
+}
+
+/* Visas interaktyvus turinys turi turėti aiškų fokusą (WCAG 2.2) */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .table-container:focus-visible, .tuning-card:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Turn off smooth transitions if user prefers reduced motion (WCAG 2.4) */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+header {
+    background-color: var(--surface-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.logo-container h2 {
+    color: var(--accent-color);
+    font-size: var(--font-h2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+#main-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+#main-nav a:hover {
+    color: var(--accent-color);
+}
+
+#main-nav a.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* ==========================================================================
+   MAIN CONTENT & TYPOGRAPHY
+   ========================================================================== */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px; /* Standartinis plotis tekstiniams puslapiams (Home/Contact) */
+    margin: 0 auto;
+    width: 100%;
+    transition: max-width 0.3s ease; /* Sklandus perėjimas, jei keistųsi dydis */
+}
+
+main.wide-layout {
+    max-width: 95%; /* Išnaudoja beveik visą ekrano plotį */
+    padding: 2rem 4rem; /* Šiek tiek didesni tarpai šonuose, kad tekstas neliptų prie krašto */
+}
+
+h1 {
+    font-size: var(--font-h1);
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+h2 {
+    font-size: var(--font-h2);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--text-muted);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: var(--font-h3);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 3rem 0;
+}
+
+.mini-divider {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 0.5rem 0;
+}
+
+/* ==========================================================================
+   INDEX.HTML (HOME)
+   ========================================================================== */
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    border: 2px solid var(--surface-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   PARTS.HTML (LISTS & TABLES)
+   ========================================================================== */
+.parts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.parts-category {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.bolt-list {
+    list-style: none;
+    padding-left: 1.2rem; /* Vietos palikimas taškeliams */
+}
+
+.bolt-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    /* Pašaliname text-indent, nes jis gadina mygtukus. 
+       Vietoj to naudojame pseudo-elementą taškui. */
+}
+
+.bolt-list li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: -1.2rem;
+    font-weight: bold;
+}
+
+.jump-btn, .back-btn {
+    display: inline-flex;       /* Pakeista į inline-flex geresniam centravimui */
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* Skaidrus fonas, tik rėmelis (švariau) */
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 10px;          /* Didesnis paddingas, kad tekstas tilptų */
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: all 0.2s ease-in-out;
+    vertical-align: middle;     /* Sulygiuoja su tekstu */
+    white-space: nowrap;        /* Neleidžia tekstui persilaužti */
+    line-height: 1;             /* Ištaiso teksto aukštį mygtuke */
+}
+
+.jump-btn:hover, .back-btn:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 8px var(--accent-color); /* Pridėtas švytėjimas užvedus */
+}
+
+.tuning-card {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+}
+
+.tuning-card ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.tuning-card ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* TABLE STYLING */
+.table-container {
+    overflow-x: auto; /* Scrollable if zoomed in 300% */
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+.specs-table, .tuning-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface-color);
+    text-align: left;
+}
+
+.specs-table caption, .tuning-table caption {
+    padding: 0.5rem;
+    font-style: italic;
+    color: var(--text-muted);
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+}
+
+thead th {
+    background-color: #2a2a2a;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+tbody th {
+    font-weight: 600;
+    color: #ddd;
+}
+
+tbody tr:hover {
+    background-color: #252525;
+}
+
+/* ==========================================================================
+   CONTACT.HTML (FORMS)
+   ========================================================================== */
+.support-form-section {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+.help-text {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: var(--font-base);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #777;
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.checklist-section ul {
+    margin-left: 1.5rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    background-color: var(--surface-color);
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid #333;
+    color: var(--text-muted);
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Mobile support)
+   ========================================================================== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .parts-grid {
+        grid-template-columns: 1fr;
+    }
+    main.wide-layout {
+        padding: 1rem;
+        max-width: 100%;
+    }
+}
