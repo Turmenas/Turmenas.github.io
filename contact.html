@@ -3,69 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Privalomi SEO atributai -->
     <meta name="description" content="Submit your Corris Rivett troubleshooting issues. Get support for engine cranking, carburettor tuning, and wiring problems.">
     <meta name="keywords" content="Corris Rivett support, Troubleshooting, Engine issues, Mechanic help, My Winter Car">
     <meta name="author" content="Turmenas">
-    
     <title>Mechanic's Support | Corris Rivett Manual</title>
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- 2.1 Operable: Keyboard accessible skip link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- 4.1 Robust: Semantic header -->
-    <header role="banner">
+    <header>
         <div class="logo-container">
             <h2>CORRIS</h2>
         </div>
-        
-        <!-- 3.3 Predictable: Consistent Navigation -->
-        <nav id="main-nav" aria-label="Main Navigation" role="navigation">
+        <nav id="main-nav" aria-label="Main Navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="parts.html">Parts & Specs</a></li>
-                <!-- 4.2 ARIA: aria-current identifies the active page -->
                 <li><a href="contact.html" class="active" aria-current="page">Mechanic's Corner</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 4.1 Robust: Main landmark -->
-    <main id="main-content" role="main">
+    <main id="main-content">
         
         <h1>Vehicle Troubleshooting & Support</h1>
         <p>If your vehicle does not start after following the factory wiring and assembly standards, submit a support ticket below.</p>
 
-        <!-- PRIVALOMAS ELEMENTAS: FORMA SU BENT 3 ELEMENTAIS -->
         <section class="support-form-section" aria-labelledby="form-title">
             <h2 id="form-title">Submit a Diagnostic Ticket</h2>
             
-            <!-- 3.2 Understandable: Aiški forma su label'iais ir aprašymais -->
             <form action="#" method="POST" class="diagnostic-form" novalidate>
                 
-                <!-- 1 Formos elementas: Text Input -->
                 <div class="form-group">
                     <label for="mechanic-name">Mechanic Name (Required)</label>
-                    <input type="text" id="mechanic-name" name="mechanic_name" required aria-required="true" placeholder="e.g. John Doe">
+                    <input type="text" id="mechanic-name" name="mechanic_name" required placeholder="e.g. John Doe">
                 </div>
 
-                <!-- Papildomas elementas, kad forma atrodytų profesionaliau (VIN) -->
                 <div class="form-group">
                     <label for="vin-number">Vehicle Identification Number (VIN)</label>
                     <input type="text" id="vin-number" name="vin_number" aria-describedby="vin-help" placeholder="e.g. UCBBGPU63590">
-                    <!-- aria-describedby nuoroda į šį tekstą -->
-                    <span id="vin-help" class="help-text"></span>
+                    <span id="vin-help" class="help-text">See the VIN decoder section for details (14 characters).</span>
                 </div>
 
-                <!-- 2 Formos elementas: Select Dropdown (Paimta iš 45-46 psl.) -->
                 <div class="form-group">
                     <label for="issue-type">Primary Issue Category (Required)</label>
-                    <select id="issue-type" name="issue_type" required aria-required="true">
+                    <select id="issue-type" name="issue_type" required>
                         <option value="" disabled selected>Select an issue...</option>
                         <option value="crank-no-start">Vehicle Cranks but does not turn over</option>
                         <option value="starts-then-dies">Vehicle Turns over but shuts off shortly after</option>
@@ -77,13 +61,11 @@
                     </select>
                 </div>
 
-                <!-- 3 Formos elementas: Textarea -->
                 <div class="form-group">
                     <label for="issue-description">Describe the symptoms</label>
                     <textarea id="issue-description" name="issue_description" rows="5" placeholder="E.g., I have checked the sparkplugs and fuel delivery, but the car still won't start..."></textarea>
                 </div>
 
-                <!-- Formos mygtukas -->
                 <div class="form-actions">
                     <button type="submit" class="submit-btn">Submit Ticket</button>
                 </div>
@@ -91,7 +73,6 @@
             </form>
         </section>
 
-        <!-- Informacinė sekcija (Paimta iš 45 psl.) -->
         <section class="checklist-section" aria-labelledby="checklist-title">
             <h2 id="checklist-title">Pre-Diagnostic Checklist</h2>
             <p><strong>Ensure the vehicle is supplied with these items before starting:</strong></p>
@@ -107,8 +88,8 @@
         
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2026 Corris Automobiles Co. LTD | Guide by DynoSaw & Turmenas</p>
+    <footer>
+        <p>&copy; 2026 Corris Automobiles Co. LTD | Guide by DynoSaw | Site by Turmenas</p>
     </footer>
 
 </body>

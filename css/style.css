@@ -12,7 +12,7 @@
     --error-color: #ff5252;
     --focus-ring: 3px solid #ffab00; /* Ryškus geltonas fokusas klaviatūros naršymui */
 
-    /* Typography using rem for 300% zoom scaling (WCAG 1.4) */
+    
     --font-base: 1rem;            /* 16px */
     --font-h1: 2.5rem;            /* 40px */
     --font-h2: 1.75rem;           /* 28px */
@@ -39,7 +39,6 @@ body {
 /* ==========================================================================
    ACCESSIBILITY & UTILITIES
    ========================================================================== */
-/* Skip to main content link (WCAG 2.1 Operable) */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -57,13 +56,11 @@ body {
     outline: var(--focus-ring);
 }
 
-/* Visas interaktyvus turinys turi turėti aiškų fokusą (WCAG 2.2) */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .table-container:focus-visible, .tuning-card:focus-visible {
     outline: var(--focus-ring);
     outline-offset: 2px;
 }
 
-/* Turn off smooth transitions if user prefers reduced motion (WCAG 2.4) */
 @media (prefers-reduced-motion: reduce) {
     * {
         transition: none !important;
@@ -120,15 +117,15 @@ header {
 main {
     flex: 1;
     padding: 2rem;
-    max-width: 1200px; /* Standartinis plotis tekstiniams puslapiams (Home/Contact) */
+    max-width: 1200px; 
     margin: 0 auto;
     width: 100%;
-    transition: max-width 0.3s ease; /* Sklandus perėjimas, jei keistųsi dydis */
+    transition: max-width 0.3s ease; 
 }
 
 main.wide-layout {
-    max-width: 95%; /* Išnaudoja beveik visą ekrano plotį */
-    padding: 2rem 4rem; /* Šiek tiek didesni tarpai šonuose, kad tekstas neliptų prie krašto */
+    max-width: 95%; 
+    padding: 2rem 4rem; 
 }
 
 h1 {
@@ -204,14 +201,12 @@ p {
 
 .bolt-list {
     list-style: none;
-    padding-left: 1.2rem; /* Vietos palikimas taškeliams */
+    padding-left: 1.2rem; 
 }
 
 .bolt-list li {
     margin-bottom: 0.5rem;
     position: relative;
-    /* Pašaliname text-indent, nes jis gadina mygtukus. 
-       Vietoj to naudojame pseudo-elementą taškui. */
 }
 
 .bolt-list li::before {
@@ -223,29 +218,29 @@ p {
 }
 
 .jump-btn, .back-btn {
-    display: inline-flex;       /* Pakeista į inline-flex geresniam centravimui */
+    display: inline-flex;       
     align-items: center;
     justify-content: center;
-    background-color: transparent; /* Skaidrus fonas, tik rėmelis (švariau) */
+    background-color: transparent; 
     color: var(--accent-color);
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    padding: 4px 10px;          /* Didesnis paddingas, kad tekstas tilptų */
+    padding: 4px 10px;         
     border: 1px solid var(--accent-color);
     border-radius: 4px;
     margin-left: 10px;
     transition: all 0.2s ease-in-out;
-    vertical-align: middle;     /* Sulygiuoja su tekstu */
-    white-space: nowrap;        /* Neleidžia tekstui persilaužti */
-    line-height: 1;             /* Ištaiso teksto aukštį mygtuke */
+    vertical-align: middle;     
+    white-space: nowrap;        
+    line-height: 1;             
 }
 
 .jump-btn:hover, .back-btn:hover {
     background-color: var(--accent-color);
     color: #000;
-    box-shadow: 0 0 8px var(--accent-color); /* Pridėtas švytėjimas užvedus */
+    box-shadow: 0 0 8px var(--accent-color); 
 }
 
 .tuning-card {
@@ -268,7 +263,7 @@ p {
 
 /* TABLE STYLING */
 .table-container {
-    overflow-x: auto; /* Scrollable if zoomed in 300% */
+    overflow-x: auto; 
     margin-bottom: 2rem;
     border-radius: 8px;
 }

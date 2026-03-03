@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="description" content="Complete vehicle parts index, bolt sizes, and tuning guide for the Corris Rivett. Jump directly to wheel alignment, rocker tuning, carburettor, and distributor setup.">
     <meta name="keywords" content="Corris Rivett parts, Bolt sizes, Engine tuning, Carburettor, Distributor, Wheel alignment, Suspension">
     <meta name="author" content="Turmenas">
-    
     <title>Parts & Bolt Sizes | Corris Rivett Manual</title>
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header role="banner">
+    <header>
         <div class="logo-container">
             <h2>CORRIS</h2>
         </div>
-        
-        <nav id="main-nav" aria-label="Main Navigation" role="navigation">
+        <nav id="main-nav" aria-label="Main Navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="parts.html" class="active" aria-current="page">Parts & Specs</a></li>
@@ -30,12 +26,11 @@
         </nav>
     </header>
 
-    <main id="main-content" role="main">
+    <main id="main-content" class="wide-layout">
         
         <h1>Vehicle Assembly & Bolt Sizes</h1>
         <p>Follow the factory order of operations. Legend: <strong>(Size x Quantity)</strong> | <strong>S = Screwdriver</strong></p>
 
-        <!-- IŠSAMUS DALIŲ SĄRAŠAS -->
         <section aria-labelledby="parts-index-title" class="parts-index-section" id="parts-index">
             <h2 id="parts-index-title">Comprehensive Parts Index</h2>
             
@@ -103,7 +98,7 @@
 
                 <!-- BODYWORK, INTERIOR & AUXILIARY -->
                 <article class="parts-category">
-                    <h3>Bodywork, Interior & Auxiliary</h3>
+                    <h3>Bodywork, Interior & Aux</h3>
                     <ul class="bolt-list">
                         <li><strong>Fender & Doors L+R:</strong> 8x6 (Fender), 8x4 (Doors)</li>
                         <li><strong>Bumpers (Front/Rear):</strong> 10x2</li>
@@ -131,7 +126,6 @@
 
         <hr class="section-divider">
 
-        <!-- TUNING GUIDES SECTION (Jump Targets) -->
         <section aria-labelledby="tuning-guides-title">
             <h2 id="tuning-guides-title">Tuning Procedures</h2>
 
@@ -208,10 +202,9 @@
 
         </section>
 
-        <!-- PRIVALOMAS ELEMENTAS: LENTELĖ IŠ 6 PSL. -->
         <section aria-labelledby="specs-title" class="specs-section">
             <h2 id="specs-title">Model Trim Features</h2>
-            <div class="table-container" tabindex="0" aria-label="Scrollable trim features table">
+            <div class="table-container" tabindex="0" role="region" aria-label="Scrollable trim features table">
                 <table class="specs-table">
                     <caption>Comparison of mechanical features across L, LX, SLX, and GT trims</caption>
                     <thead>
@@ -259,8 +252,8 @@
         
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2026 Corris Automobiles Co. LTD | Guide by DynoSaw & Turmenas</p>
+    <footer>
+        <p>&copy; 2026 Corris Automobiles Co. LTD | Guide by DynoSaw | Site by Turmenas</p>
     </footer>
 
 </body>
