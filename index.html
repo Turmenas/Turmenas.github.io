@@ -1,282 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>
-    Portfolio
-  </title>
-
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Gabrielius Tumėnas">
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
-  <script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-  <script src="assets/js/functions.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Privalomi SEO atributai -->
+    <meta name="description" content="The ultimate workshop manual and build guide for the Corris Rivett in My Winter Car. Learn how to assemble, wire, and tune your vehicle.">
+    <meta name="keywords" content="My Winter Car, Corris Rivett, Workshop Manual, Tuning, Assembly, Engine, Chassis">
+    <meta name="author" content="Turmenas">
+    
+    <title>Corris Rivett Workshop Manual | Home</title>
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
 
-    <div class="profile-img">
-      <img src="assets/img/profile-image.jpeg" alt="petah" class="img-fluid rounded-circle">
-    </div>
+    <!-- Accessibility: Skip to main content link (Hidden visually until focused by keyboard) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <img src="assets/img/logo.png" alt="VGTU logo">
-      <h1 class="sitename">Gabrielius Tumėnas</h1>
-    </a>
-
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero"><i class="bi bi-house navicon"></i>Home</a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-        <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="main">
-
-    <div>
-      <button id="scroll-toggle" class="btn">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>
-      </button>
-    </div>
-    
-
-    <!-- Starter Section Section -->
-    <section id="about" class="about section">
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div>
-      </section>
-
-      <section id="resume" class="resume section">
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Resume</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    <!-- Accessibility: role="banner" -->
+    <header role="banner">
+        <div class="logo-container">
+            <h2>CORRIS</h2>
         </div>
-      </section>
+        
+        <!-- Accessibility: role="navigation" and aria-label -->
+        <nav id="main-nav" aria-label="Main Navigation" role="navigation">
+            <ul>
+                <!-- Accessibility: aria-current="page" informs screen readers this is the active page -->
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="parts.html">Assembly & Specs</a></li>
+                <li><a href="contact.html">Mechanic's Corner</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <section id="portfolio" class="portfolio section">
-          <!-- Section Title -->
-          <div class="container section-title" data-aos="fade-up">
-            <h2>Portfolio</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-          </div>
-      </section>
-
-      <section id="services" class="service section">
-            <div class="container section-title" data-aos="fade-up">
-              <h2>Services</h2>
-              <video autoplay>
-                <source src="assets/video/fly.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/0kV2zInSIjg?si=MBRB_raqBU3bx4is" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div>
-              <audio controls src="assets/audio/explosion.mp3"></audio>
-            </div>
-      </section>
-
-      <section id="contact" class="contact section">
-        <div class="container section-title">
-          <h2>Contact</h2>
-          <form id="contact-form">
-            <div>
-              <label for="first-name">First Name:</label>
-              <input type="text" id="first-name" required>
-            </div>
-      
-            <div>
-              <label for="last-name">Last Name:</label>
-              <input type="text" id="last-name" required>
-            </div>
-      
-            <div>
-              <label for="email">Email:</label>
-              <input type="email" id="email" required>
-            </div>
-      
-            <div>
-              <label for="phone">Phone Number:</label>
-              <input type="tel" id="phone" required>
-            </div>
-      
-            <div>
-              <label for="address">Address:</label>
-              <input type="text" id="address" required>
-            </div>
-    
-            <div>
-              <label for="question1"> How likely are you to buy a horse from 1 to 10:</label>
-              <input type="number" id="question1" min="1" max="10" required>
-            </div>
-      
-            <div>
-              <label for="question2">Do you think horse shoes made of uranium are a good idea?(1-10)</label>
-              <input type="number" id="question2" min="1" max="10" required>
-            </div>
-      
-            <div>
-              <label for="question3">Would you eat flat grass (1-10):</label>
-              <input type="number" id="question3" min="1" max="10" required>
-            </div>
-      
-            <div>
-              <label for="question4">How much of a sigma are you? (1-10):</label>
-              <input type="number" id="question4" min="1" max="10" required>
-            </div>
-      
-            <div>
-              <label for="question5">How responsive is the website on different devices? (1-10):</label>
-              <input type="number" id="question5" min="1" max="10" required>
-            </div>
-      
-            <button type="button" id="submit-btn" class="btn">Submit</button>
-          </form>
-      
-          <div id="result" class="hidden"></div>
-        </div>
-      </section>
-
-      <div>
-        <math display="block">
-          <mrow> <!--Matematinė eilutė --> 
-            <mi>f</mi> <!-- identifikatorius -->
-            <mo>(</mo> <!-- operatorius  -->
-            <mi>a</mi> 
-            <mo>)</mo> 
-            <mo>=</mo> 
-            <mfrac> <!--trupmena -->
-              <mrow>
-                <mn>1</mn> <!-- skaičius -->
-              </mrow>
-              <mrow>
-                <mn>2</mn>
-                <mi>&#x3C0;</mi> <!-- pi -->
-                <mi>i</mi>
-              </mrow>
-            </mfrac>
-            <mo>&#x222E;</mo> <!-- kontūro integralas -->
-            <mfrac>
-              <mrow>
-                <mi>f</mi>
-                <mo>(</mo>
-                <mi>z</mi>
-                <mo>)</mo>
-              </mrow>
-              <mrow>
-                <mi>z</mi>
-                <mo>-</mo>
-                <mi>a</mi>
-              </mrow>
-            </mfrac>
-            <mi>d</mi>
-            <mi>z</mi>
-          </mrow>
-        </math>
-      
-      </div>
-      <div>
-              <button id="theme-toggle" class="btn">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
-              </button>
-      </div>
-
-      <div class="clock-container">
-        <div class="clock">
-          <span id="time"></span>
-      </div>
-      </div>
+    <!-- Accessibility: role="main" and an ID for the skip link -->
+    <main id="main-content" role="main">
+        <section class="hero-section" aria-labelledby="hero-title">
+            <h1 id="hero-title">Corris Rivett Workshop Manual</h1>
+            <h2>The Definitive Guide for My Winter Car Builders</h2>
             
-  </main>
+            <!-- Accessibility: Descriptive alt text -->
+            <img src="img/corris-main.jpg" alt="Yellow Corris Rivett 2 Door Pillared Sedan driving on a winter snowy road at sunset" class="hero-image" id="main-car-img">
+        </section>
 
-  <footer id="footer" class="footer position-relative">
+        <section class="intro-section" aria-labelledby="intro-title">
+            <h3 id="intro-title">Introduction</h3>
+            <p>Welcome to the official Corris Rivett Workshop Manual. This guide is designed to provide you with all the necessary information regarding vehicle inspection requirements, factory specs, and tuning capabilities.</p>
+            
+            <h4>Manual Chapters Included:</h4>
+            <p><strong>Engine:</strong> Assembly, Mounting, Exhaust Systems.</p>
+            <p><strong>Chassis:</strong> Bodywork, Suspension, Generic Engine Bay, Gearbox, Interior.</p>
+            <p><strong>Wiring & Tuning:</strong> Full wiring diagrams, Carburettor tuning, Distributor tuning, and Wheel alignment.</p>
+            
+            <h5>Important Notice for Builders</h5>
+            <p>To uphold the highest factory standard, it is strongly recommended to only purchase factory quality parts for ultimate part longevity. Aftermarket camshafts do NOT pass as a factory vehicle feature in an inspection.</p>
+        </section>
+    </main>
 
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">iPortfolio</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-        <div class="social-links">
-          <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="bi bi-twitter"></i>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" width="50px" height="50px"><path fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M49,11.096c-1.768,0.784-3.664,1.311-5.658,1.552c2.035-1.22,3.597-3.151,4.332-5.448c-1.903,1.127-4.013,1.947-6.255,2.388c-1.795-1.916-4.354-3.11-7.186-3.11c-5.44,0-9.849,4.409-9.849,9.847c0,0.771,0.088,1.522,0.257,2.244c-8.184-0.412-15.441-4.332-20.299-10.29c-0.848,1.458-1.332,3.149-1.332,4.953c0,3.416,1.735,6.429,4.38,8.197c-1.616-0.051-3.132-0.495-4.46-1.233c0,0.042,0,0.082,0,0.125c0,4.773,3.394,8.748,7.896,9.657c-0.824,0.227-1.694,0.346-2.592,0.346c-0.636,0-1.253-0.062-1.856-0.178c1.257,3.909,4.892,6.761,9.201,6.84c-3.368,2.641-7.614,4.213-12.23,4.213c-0.797,0-1.579-0.044-2.348-0.137c4.356,2.795,9.534,4.425,15.095,4.425c18.114,0,28.022-15.007,28.022-28.016c0-0.429-0.011-0.856-0.029-1.275C46.012,14.807,47.681,13.071,49,11.096z"/></svg>
-          </a>
-          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" width="50px" height="50px"><path style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M9,45h32c2.209,0,4-1.791,4-4V9c0-2.209-1.791-4-4-4H9C6.791,5,5,6.791,5,9v32C5,43.209,6.791,45,9,45z"/><polygon style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="11,20 17,20 17,33.135 17,39 11,39 "/><path style="fill:none;stroke:#000000;stroke-width:1.9758;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M14,17L14,17c-1.8,0-3-1.133-3-2.533S12.2,12,14,12s2.925,1.067,3,2.467C17,15.867,15.875,17,14,17z"/><path style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M39,39h-6c0,0,0-9.257,0-10c0-2-1-4-3.5-4.043C27.022,24.913,26,27,26,29c0,0.909,0,10,0,10h-6V20h6v2.561c0,0,1.93-2.561,5.813-2.561C35.778,20,39,22.726,39,28.261V39z"/></svg>
-          </a>
-          <a href="https://github.com/Turmenas" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" width="50px" height="50px"><path style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M3,25c0,12.148,9.852,22,22,22s22-9.852,22-22S37.148,3,25,3S3,12.852,3,25z"/><path style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M38,25.655c4.51-0.282,7.58-0.017,9,0.163"/><path style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M37.401,27.519c5.169,0,8.498,0.675,9.699,0.967"/><path style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M3,25.802c1.42-0.181,4.49-0.445,9-0.163"/><path style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="M2.999,28.476c1.199-0.292,4.528-0.968,9.701-0.968"/><path style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M36.3,18.6c0.5-1.6,1.3-5.2-0.2-6.6c-2.7,0-4.6,1.3-5.5,2.1C29,13.4,27.1,13,25,13s-4,0.4-5.7,1.1c-0.9-0.8-2.8-2.1-5.5-2.1c-1.4,1.3-0.7,4.9-0.2,6.6c-1.1,1.5-1.7,3.3-1.7,5c0,5.5,4.2,9.4,13,9.4s13-3.9,13-9.4C38,21.8,37.4,20.1,36.3,18.6z"/><path style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M19,39c0,0-3,0-3.6,0c-1.5,0-2.8-0.6-3.4-1.8c-0.7-1.3-1-3.5-2.8-4.7C8.9,32.3,9.1,32,9.7,32c0.6,0.1,1.9,0.9,2.7,2c0.9,1.1,1.8,2,3.4,2s3.8,0.1,4.5-0.7"/><path style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M31,45.7v-6.1c0-2.7-1.9-6.5-4.5-6.5h-2.8c-2.6,0-4.7,3.8-4.7,6.5V46"/></svg>
-          </a>
-        </div>
-    
-      </div>
-
-  </footer>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
+    <!-- Accessibility: role="contentinfo" -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Corris Automobiles Co. LTD | Guide by DynoSaw & Turmenas</p>
+    </footer>
 
 </body>
-
 </html>
