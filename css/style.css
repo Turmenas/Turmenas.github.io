@@ -1,25 +1,23 @@
 /* ==========================================================================
-   CSS RESET & VARIABLES (AAA Accessibility Standards)
+   1. VARIABLES & RESETS (AAA Accessibility Standards)
    ========================================================================== */
 :root {
-    /* Colors - High Contrast for AAA (Dark Theme) */
-    --bg-color: #121212;          /* Labai tamsus fonas */
-    --surface-color: #1e1e1e;     /* Kortelių/Lentelių fonas */
-    --text-color: #f5f5f5;        /* Beveik baltas tekstas (Contrast ratio > 15:1) */
-    --text-muted: #b0b0b0;        /* Pagalbinis tekstas */
-    --accent-color: #5ce1e6;      /* Corris Blue (Prisitaikyta tamsiam fonui) */
-    --accent-hover: #3bc2c8;      
-    --error-color: #ff5252;
-    --focus-ring: 3px solid #ffab00; /* Ryškus geltonas fokusas klaviatūros naršymui */
-
+    /* Colors - High Contrast */
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-color: #f5f5f5;
+    --text-muted: #b0b0b0;
+    --accent-color: #5ce1e6;
+    --accent-hover: #3bc2c8;
+    --focus-ring: 3px solid #ffab00;
     
-    --font-base: 1rem;            /* 16px */
-    --font-h1: 2.5rem;            /* 40px */
-    --font-h2: 1.75rem;           /* 28px */
-    --font-h3: 1.25rem;           /* 20px */
+    /* Typography */
+    --font-base: 1rem;
+    --font-h1: 2.5rem;
+    --font-h2: 1.75rem;
+    --font-h3: 1.25rem;
 }
 
-/* Base Reset */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -36,8 +34,12 @@ body {
     flex-direction: column;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+
 /* ==========================================================================
-   ACCESSIBILITY & UTILITIES
+   2. ACCESSIBILITY & FOCUS STATES
    ========================================================================== */
 .skip-link {
     position: absolute;
@@ -46,29 +48,41 @@ body {
     background: var(--accent-color);
     color: #000;
     padding: 8px;
-    z-index: 100;
+    z-index: 1000;
     font-weight: bold;
     text-decoration: none;
 }
 
-.skip-link:focus {
-    top: 0;
-    outline: var(--focus-ring);
-}
+.skip-link:focus { top: 0; outline: var(--focus-ring); }
 
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .table-container:focus-visible, .tuning-card:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, 
+textarea:focus-visible, .table-container:focus-visible, .tuning-card:focus-visible {
     outline: var(--focus-ring);
     outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
+/* ==========================================================================
+   3. TYPOGRAPHY & LAYOUT
+   ========================================================================== */
+h1 { font-size: var(--font-h1); margin-bottom: 0.5rem; color: var(--accent-color); }
+h2 { font-size: var(--font-h2); margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid var(--text-muted); padding-bottom: 0.5rem; }
+h3 { font-size: var(--font-h3); margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-color); }
+p { margin-bottom: 1rem; }
+
+.section-divider { border: 0; height: 1px; background: #333; margin: 3rem 0; }
+.mini-divider { border: 0; height: 1px; background: #444; margin: 0.5rem 0; }
+
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px; 
+    margin: 0 auto;
+    width: 100%;
 }
+main.wide-layout { max-width: 95%; padding: 2rem 4rem; }
 
 /* ==========================================================================
-   HEADER & NAVIGATION
+   4. NAVIGATION & FOOTER
    ========================================================================== */
 header {
     background-color: var(--surface-color);
@@ -86,12 +100,7 @@ header {
     text-transform: uppercase;
 }
 
-#main-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
+#main-nav ul { list-style: none; display: flex; gap: 1.5rem; }
 #main-nav a {
     color: var(--text-color);
     text-decoration: none;
@@ -101,331 +110,9 @@ header {
     border-bottom: 2px solid transparent;
     transition: color 0.3s, border-bottom 0.3s;
 }
+#main-nav a:hover { color: var(--accent-color); }
+#main-nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
-#main-nav a:hover {
-    color: var(--accent-color);
-}
-
-#main-nav a.active {
-    color: var(--accent-color);
-    border-bottom: 2px solid var(--accent-color);
-}
-
-/* ==========================================================================
-   MAIN CONTENT & TYPOGRAPHY
-   ========================================================================== */
-main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px; 
-    margin: 0 auto;
-    width: 100%;
-    transition: max-width 0.3s ease; 
-}
-
-main.wide-layout {
-    max-width: 95%; 
-    padding: 2rem 4rem; 
-}
-
-h1 {
-    font-size: var(--font-h1);
-    margin-bottom: 0.5rem;
-    color: var(--accent-color);
-}
-
-h2 {
-    font-size: var(--font-h2);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--text-muted);
-    padding-bottom: 0.5rem;
-}
-
-h3 {
-    font-size: var(--font-h3);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--accent-color);
-}
-
-p {
-    margin-bottom: 1rem;
-}
-
-.section-divider {
-    border: 0;
-    height: 1px;
-    background: #333;
-    margin: 3rem 0;
-}
-
-.mini-divider {
-    border: 0;
-    height: 1px;
-    background: #444;
-    margin: 0.5rem 0;
-}
-
-/* ==========================================================================
-   INDEX.HTML (HOME)
-   ========================================================================== */
-.hero-section {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.hero-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-    border: 2px solid var(--surface-color);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
-}
-
-/* ==========================================================================
-   PARTS.HTML (LISTS & TABLES)
-   ========================================================================== */
-.parts-grid {
-    display: grid;
-    /* Automatiškai prisitaikantys stulpeliai, bet dabar jie platesni dėl paveikslėlių */
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-    gap: 2rem;
-}
-
-/* PARTS CATEGORY CARD (Text left, Image right) */
-.parts-category {
-    background: var(--surface-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: flex-start;
-}
-
-.parts-content {
-    flex: 1; /* Tekstas užima visą laisvą vietą */
-}
-
-.parts-image-container {
-    width: 120px; /* Fiksuotas plotis paveikslėliui sąraše */
-    flex-shrink: 0;
-}
-
-.category-img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    border: 1px solid #444;
-}
-
-/* TUNING CARD (Text left, Image right) */
-.tuning-card {
-    background: var(--surface-color);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--accent-color);
-    border-radius: 4px;
-    
-    /* Grid layout: Tekstas + Paveikslėlis */
-    display: grid;
-    grid-template-columns: 1fr 300px; /* Tekstas laisvai, paveikslėlis 300px */
-    gap: 2rem;
-    align-items: start;
-}
-
-.tuning-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    border: 1px solid #444;
-}
-
-/* RESPONSIVE: Jei ekranas mažas (mobilus), viską dedame į stulpelį */
-@media (max-width: 850px) {
-    .parts-category {
-        flex-direction: column-reverse; /* Paveikslėlis viršuje (arba apačioje) */
-    }
-    
-    .parts-image-container {
-        width: 100%; /* Paveikslėlis per visą plotį */
-        margin-bottom: 1rem;
-    }
-    
-    .tuning-card {
-        grid-template-columns: 1fr; /* Viskas viename stulpelyje */
-    }
-    
-    .tuning-image {
-        margin-top: 1rem;
-        width: 100%;
-        max-width: 400px; /* Kad nebūtų per didelis */
-    }
-}
-
-/* SĄRAŠŲ STILIUS (PALIEKAME SENĄ) */
-.bolt-list {
-    list-style: none;
-    padding-left: 1.2rem; 
-}
-
-.bolt-list li {
-    margin-bottom: 0.5rem;
-    position: relative;
-}
-
-.bolt-list li::before {
-    content: "•";
-    color: var(--accent-color);
-    position: absolute;
-    left: -1.2rem;
-    font-weight: bold;
-}
-
-.jump-btn, .back-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    margin-left: 10px;
-    transition: all 0.2s ease-in-out;
-    vertical-align: middle;
-    white-space: nowrap;
-    line-height: 1;
-}
-
-.jump-btn:hover, .back-btn:hover {
-    background-color: var(--accent-color);
-    color: #000;
-    box-shadow: 0 0 8px var(--accent-color);
-}
-
-.tuning-card ol, .tuning-card ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* TABLE STYLING (PALIEKAME SENĄ) */
-.table-container {
-    overflow-x: auto; 
-    margin-bottom: 2rem;
-    border-radius: 8px;
-}
-
-.specs-table, .tuning-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--surface-color);
-    text-align: left;
-}
-
-.specs-table caption, .tuning-table caption {
-    padding: 0.5rem;
-    font-style: italic;
-    color: var(--text-muted);
-    text-align: left;
-}
-
-th, td {
-    padding: 1rem;
-    border-bottom: 1px solid #333;
-}
-
-thead th {
-    background-color: #2a2a2a;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-tbody th {
-    font-weight: 600;
-    color: #ddd;
-}
-
-tbody tr:hover {
-    background-color: #252525;
-}
-
-/* ==========================================================================
-   CONTACT.HTML (FORMS)
-   ========================================================================== */
-.support-form-section {
-    background: var(--surface-color);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--accent-color);
-}
-
-.help-text {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.25rem;
-}
-
-input[type="text"],
-select,
-textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background-color: #2a2a2a;
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: var(--font-base);
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: #777;
-}
-
-.submit-btn {
-    background-color: var(--accent-color);
-    color: #000;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.submit-btn:hover {
-    background-color: var(--accent-hover);
-}
-
-.checklist-section ul {
-    margin-left: 1.5rem;
-}
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
 footer {
     background-color: var(--surface-color);
     text-align: center;
@@ -436,158 +123,148 @@ footer {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (Mobile support)
+   5. COMPONENTS (Buttons, Lists, Tables, Cards)
    ========================================================================== */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    #main-nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .parts-grid {
-        grid-template-columns: 1fr;
-    }
-    main.wide-layout {
-        padding: 1rem;
-        max-width: 100%;
-    }
+/* Buttons */
+.jump-btn, .back-btn, .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
+
+.jump-btn, .back-btn {
+    background-color: transparent;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    margin-left: 10px;
+    line-height: 1;
+}
+.jump-btn:hover, .back-btn:hover { background-color: var(--accent-color); color: #000; box-shadow: 0 0 8px var(--accent-color); }
+
+/* Bolt Lists */
+.bolt-list { list-style: none; padding-left: 1.2rem; }
+.bolt-list li { margin-bottom: 0.5rem; position: relative; }
+.bolt-list li::before { content: "•"; color: var(--accent-color); position: absolute; left: -1.2rem; font-weight: bold; }
+
+/* Tables */
+.table-container { overflow-x: auto; margin-bottom: 2rem; border-radius: 8px; }
+.specs-table, .tuning-table { width: 100%; border-collapse: collapse; background: var(--surface-color); text-align: left; }
+.specs-table caption, .tuning-table caption { padding: 0.5rem; font-style: italic; color: var(--text-muted); text-align: left; }
+th, td { padding: 1rem; border-bottom: 1px solid #333; }
+thead th { background-color: #2a2a2a; color: var(--accent-color); font-weight: bold; }
+tbody th { font-weight: 600; color: #ddd; }
+tbody tr:hover { background-color: #252525; }
+
+/* Forms */
+.support-form-section { background: var(--surface-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; }
+.form-group { margin-bottom: 1.5rem; }
+label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--accent-color); }
+.help-text { display: block; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+input[type="text"], select, textarea { width: 100%; padding: 0.75rem; border: 1px solid #444; border-radius: 4px; background-color: #2a2a2a; color: var(--text-color); font-family: inherit; font-size: var(--font-base); }
+.submit-btn { background-color: var(--accent-color); color: #000; border: none; padding: 0.75rem 1.5rem; font-size: 1.1rem; border-radius: 4px; }
+.submit-btn:hover { background-color: var(--accent-hover); }
 
 /* ==========================================================================
-   ADVANCED CSS-ONLY FILTERS (Multiple Selection & Sticky Menu)
+   6. PAGE SPECIFIC STYLES (Index & Parts)
    ========================================================================== */
+/* Index Hero */
+.hero-section { text-align: center; margin-bottom: 3rem; }
+.hero-image { max-width: 100%; height: auto; border-radius: 8px; margin-top: 1.5rem; border: 2px solid var(--surface-color); box-shadow: 0 4px 6px rgba(0,0,0,0.5); }
 
-/* 1. Hide actual inputs but keep them accessible for keyboard focus */
-input.filter-cb {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
+/* Parts Layouts */
+.parts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+.parts-category { background: var(--surface-color); padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
+.parts-content { flex: 1; }
+.parts-image-container { width: 120px; flex-shrink: 0; }
+.category-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #444; }
 
-/* 2. Sticky Expandable Filter Menu */
+.tuning-card { background: var(--surface-color); padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-color); border-radius: 4px; display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; }
+.tuning-card ol, .tuning-card ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+.tuning-image img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid #444; }
+
+/* ==========================================================================
+   7. ADVANCED CSS-ONLY FILTERING LOGIC (Cleaned up)
+   ========================================================================== */
+input.filter-cb { position: absolute; opacity: 0; pointer-events: none; }
+
 .sticky-filter {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(18, 18, 18, 0.95); /* Tamsus fonas su lengvu permatomumu */
+    background-color: rgba(18, 18, 18, 0.95);
     backdrop-filter: blur(5px);
     padding: 1rem 0;
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--accent-color);
 }
+.filter-summary { cursor: pointer; font-size: 1.2rem; font-weight: bold; color: var(--accent-color); list-style: none; display: inline-flex; align-items: center; padding: 0.5rem 0; }
+.filter-summary::-webkit-details-marker { display: none; }
+.filter-summary::before { content: "▼"; margin-right: 0.5rem; font-size: 0.8rem; transition: transform 0.3s ease; }
+.sticky-filter[open] .filter-summary::before { transform: rotate(180deg); }
 
-.filter-summary {
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--accent-color);
-    list-style: none; 
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 0;
+.filter-controls { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+.filter-controls label { cursor: pointer; padding: 0.5rem 1.5rem; background-color: var(--surface-color); border: 1px solid var(--accent-color); border-radius: 4px; font-weight: bold; transition: all 0.2s ease; user-select: none; }
+.filter-controls label:hover { background-color: rgba(92, 225, 230, 0.1); }
+
+/* Focus and Checked States for Labels */
+input.filter-cb:focus-visible ~ .sticky-filter label { outline: var(--focus-ring); outline-offset: 2px; }
+main:has(#filter-engine:checked) label[for="filter-engine"],
+main:has(#filter-chassis:checked) label[for="filter-chassis"],
+main:has(#filter-body:checked) label[for="filter-body"],
+main:has(#filter-trim:checked) label[for="filter-trim"] {
+    background-color: var(--accent-color); color: #000; box-shadow: 0 0 10px rgba(92, 225, 230, 0.4);
 }
 
-/* Paslėpti naršyklės standartinę rodyklę ir sukurti savo */
-.filter-summary::-webkit-details-marker {
+/* --- THE FILTERING MAGIC --- */
+/* 1. If ANY filter is checked, hide all filterable items by default */
+main:has(.filter-cb:checked) .filterable-item { display: none; }
+
+/* 2. Show matched categories based on checked filters */
+main:has(#filter-engine:checked) .cat-engine.parts-category { display: flex; }
+main:has(#filter-engine:checked) .cat-engine.tuning-card { display: grid; }
+
+main:has(#filter-chassis:checked) .cat-chassis.parts-category { display: flex; }
+main:has(#filter-chassis:checked) .cat-chassis.tuning-card { display: grid; }
+
+main:has(#filter-body:checked) .cat-body.parts-category { display: flex; }
+main:has(#filter-trim:checked) .cat-trim { display: block; }
+
+/* 3. Hide entire sections if their related filters are NOT active */
+/* Parts Index only needs Engine, Chassis, or Body */
+main:has(.filter-cb:checked):not(:has(#filter-engine:checked)):not(:has(#filter-chassis:checked)):not(:has(#filter-body:checked)) #parts-index {
+    display: none;
+}
+/* Tuning Section only needs Engine or Chassis */
+main:has(.filter-cb:checked):not(:has(#filter-engine:checked)):not(:has(#filter-chassis:checked)) #tuning-section {
+    display: none;
+}
+/* Hide dividers to keep layout clean when filtering */
+main:has(.filter-cb:checked) .section-divider {
     display: none;
 }
 
-.filter-summary::before {
-    content: "▼";
-    margin-right: 0.5rem;
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-}
+.filterable-item { animation: fadeIn 0.4s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-.sticky-filter[open] .filter-summary::before {
-    transform: rotate(180deg);
-}
-
-/* 3. Filter Button Styles */
-.filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.filter-controls label {
-    cursor: pointer;
-    padding: 0.5rem 1.5rem;
-    background-color: var(--surface-color);
-    border: 1px solid var(--accent-color);
-    color: var(--text-color);
-    border-radius: 4px;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    user-select: none;
-}
-
-.filter-controls label:hover {
-    background-color: rgba(92, 225, 230, 0.1);
-}
-
-/* AAA Focus: Kai paslėptas checkbox gauna fokusą (Tab klavišas), paryškinti etiketę */
-input#filter-engine:focus-visible ~ .sticky-filter label[for="filter-engine"],
-input#filter-chassis:focus-visible ~ .sticky-filter label[for="filter-chassis"],
-input#filter-body:focus-visible ~ .sticky-filter label[for="filter-body"],
-input#filter-trim:focus-visible ~ .sticky-filter label[for="filter-trim"] {
-    outline: var(--focus-ring);
-    outline-offset: 2px;
-}
-
-/* 4. Active Button Highlight (Kai checkbox pažymėtas) */
-#filter-engine:checked ~ .sticky-filter label[for="filter-engine"],
-#filter-chassis:checked ~ .sticky-filter label[for="filter-chassis"],
-#filter-body:checked ~ .sticky-filter label[for="filter-body"],
-#filter-trim:checked ~ .sticky-filter label[for="filter-trim"] {
-    background-color: var(--accent-color);
-    color: #000;
-    box-shadow: 0 0 10px rgba(92, 225, 230, 0.4);
-}
-
-/* 5. THE MULTIPLE FILTERING LOGIC */
-
-/* 
-   Logika: 
-   Jei BENT VIENAS checkbox'as yra pažymėtas, mes iš pradžių PASLEPIAME visas korteles.
-   Jei nei vienas nėra pažymėtas - viskas matoma pagal nutylėjimą.
-*/
-.filter-cb:checked ~ section .filterable-item,
-.filter-cb:checked ~ section.filterable-item {
-    display: none;
-}
-
-/* 
-   Tada mes ATIDENGIAME tik tas korteles, kurios atitinka pažymėtus checkbox'us.
-   Jei pažymėti keli (pvz., Engine ir Trim), CSS atidengs abi kategorijas!
-*/
-
-/* ENGINE */
-#filter-engine:checked ~ section .cat-engine.parts-category { display: flex; }
-#filter-engine:checked ~ section .cat-engine.tuning-card { display: grid; }
-
-/* CHASSIS */
-#filter-chassis:checked ~ section .cat-chassis.parts-category { display: flex; }
-#filter-chassis:checked ~ section .cat-chassis.tuning-card { display: grid; }
-
-/* BODY */
-#filter-body:checked ~ section .cat-body.parts-category { display: flex; }
-
-/* TRIM SPECS TABLE (Visas blokas atidengiamas kaip 'block') */
-#filter-trim:checked ~ section.cat-trim { display: block; }
-
-/* Animacija gražiam perėjimui */
-.filterable-item {
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+/* ==========================================================================
+   8. RESPONSIVE DESIGN (Mobile)
+   ========================================================================== */
+@media (max-width: 850px) {
+    header { flex-direction: column; gap: 1rem; }
+    #main-nav ul { flex-wrap: wrap; justify-content: center; }
+    main.wide-layout { padding: 1rem; max-width: 100%; }
+    .parts-grid { grid-template-columns: 1fr; }
+    
+    .parts-category { flex-direction: column-reverse; }
+    .parts-image-container { width: 100%; margin-bottom: 1rem; }
+    .tuning-card { grid-template-columns: 1fr; }
+    .tuning-image { margin-top: 1rem; width: 100%; max-width: 400px; }
 }

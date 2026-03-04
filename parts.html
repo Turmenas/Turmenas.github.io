@@ -50,10 +50,9 @@
 
         <!-- 3. PARTS LIST -->
         <section aria-labelledby="parts-index-title" class="parts-index-section" id="parts-index">
-            <h2 id="parts-index-title">Comprehensive Parts Index</h2>
+            <h2 id="parts-index-title" class="section-title">Comprehensive Parts Index</h2>
             
             <div class="parts-grid">
-                
                 <!-- ENGINE CATEGORY -->
                 <article class="parts-category filterable-item cat-engine">
                     <div class="parts-content">
@@ -156,9 +155,11 @@
             </div>
         </section>
 
+        <hr class="section-divider">
+
         <!-- 4. TUNING GUIDES -->
         <section aria-labelledby="tuning-guides-title" id="tuning-section">
-            <h2 id="tuning-guides-title">Tuning Procedures</h2>
+            <h2 id="tuning-guides-title" class="section-title">Tuning Procedures</h2>
 
             <article id="crank-alignment" class="tuning-card filterable-item cat-engine" tabindex="-1">
                 <div class="tuning-content">
@@ -289,10 +290,9 @@
         </section>
 
         <!-- 5. TRIM FEATURES TABLE -->
-        <!-- Ši sekcija dabar pati yra filterable-item ir priklauso cat-trim -->
         <section aria-labelledby="specs-title" class="specs-section filterable-item cat-trim">
             <h2 id="specs-title">Model Trim Features</h2>
-            <div class="table-container" tabindex="0" aria-label="Scrollable trim features table">
+            <div class="table-container" tabindex="0" role="region" aria-label="Scrollable trim features table">
                 <table class="specs-table">
                     <caption>Comparison of mechanical features across L, LX, SLX, and GT trims</caption>
                     <thead>
