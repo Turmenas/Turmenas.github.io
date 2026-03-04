@@ -189,16 +189,84 @@ p {
    ========================================================================== */
 .parts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Automatiškai prisitaikantys stulpeliai, bet dabar jie platesni dėl paveikslėlių */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
     gap: 2rem;
 }
 
+/* PARTS CATEGORY CARD (Text left, Image right) */
 .parts-category {
     background: var(--surface-color);
     padding: 1.5rem;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
 }
 
+.parts-content {
+    flex: 1; /* Tekstas užima visą laisvą vietą */
+}
+
+.parts-image-container {
+    width: 120px; /* Fiksuotas plotis paveikslėliui sąraše */
+    flex-shrink: 0;
+}
+
+.category-img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+/* TUNING CARD (Text left, Image right) */
+.tuning-card {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+    
+    /* Grid layout: Tekstas + Paveikslėlis */
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Tekstas laisvai, paveikslėlis 300px */
+    gap: 2rem;
+    align-items: start;
+}
+
+.tuning-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    border: 1px solid #444;
+}
+
+/* RESPONSIVE: Jei ekranas mažas (mobilus), viską dedame į stulpelį */
+@media (max-width: 850px) {
+    .parts-category {
+        flex-direction: column-reverse; /* Paveikslėlis viršuje (arba apačioje) */
+    }
+    
+    .parts-image-container {
+        width: 100%; /* Paveikslėlis per visą plotį */
+        margin-bottom: 1rem;
+    }
+    
+    .tuning-card {
+        grid-template-columns: 1fr; /* Viskas viename stulpelyje */
+    }
+    
+    .tuning-image {
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 400px; /* Kad nebūtų per didelis */
+    }
+}
+
+/* SĄRAŠŲ STILIUS (PALIEKAME SENĄ) */
 .bolt-list {
     list-style: none;
     padding-left: 1.2rem; 
@@ -218,50 +286,37 @@ p {
 }
 
 .jump-btn, .back-btn {
-    display: inline-flex;       
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent; 
+    background-color: transparent;
     color: var(--accent-color);
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    padding: 4px 10px;         
+    padding: 4px 10px;
     border: 1px solid var(--accent-color);
     border-radius: 4px;
     margin-left: 10px;
     transition: all 0.2s ease-in-out;
-    vertical-align: middle;     
-    white-space: nowrap;        
-    line-height: 1;             
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1;
 }
 
 .jump-btn:hover, .back-btn:hover {
     background-color: var(--accent-color);
     color: #000;
-    box-shadow: 0 0 8px var(--accent-color); 
+    box-shadow: 0 0 8px var(--accent-color);
 }
 
-.tuning-card {
-    background: var(--surface-color);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--accent-color);
-    border-radius: 4px;
-}
-
-.tuning-card ol {
+.tuning-card ol, .tuning-card ul {
     margin-left: 1.5rem;
     margin-bottom: 1rem;
 }
 
-.tuning-card ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* TABLE STYLING */
+/* TABLE STYLING (PALIEKAME SENĄ) */
 .table-container {
     overflow-x: auto; 
     margin-bottom: 2rem;
@@ -401,4 +456,138 @@ footer {
         padding: 1rem;
         max-width: 100%;
     }
+}
+
+/* ==========================================================================
+   ADVANCED CSS-ONLY FILTERS (Multiple Selection & Sticky Menu)
+   ========================================================================== */
+
+/* 1. Hide actual inputs but keep them accessible for keyboard focus */
+input.filter-cb {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 2. Sticky Expandable Filter Menu */
+.sticky-filter {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(18, 18, 18, 0.95); /* Tamsus fonas su lengvu permatomumu */
+    backdrop-filter: blur(5px);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.filter-summary {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    list-style: none; 
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+/* Paslėpti naršyklės standartinę rodyklę ir sukurti savo */
+.filter-summary::-webkit-details-marker {
+    display: none;
+}
+
+.filter-summary::before {
+    content: "▼";
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.sticky-filter[open] .filter-summary::before {
+    transform: rotate(180deg);
+}
+
+/* 3. Filter Button Styles */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.filter-controls label {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--surface-color);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.filter-controls label:hover {
+    background-color: rgba(92, 225, 230, 0.1);
+}
+
+/* AAA Focus: Kai paslėptas checkbox gauna fokusą (Tab klavišas), paryškinti etiketę */
+input#filter-engine:focus-visible ~ .sticky-filter label[for="filter-engine"],
+input#filter-chassis:focus-visible ~ .sticky-filter label[for="filter-chassis"],
+input#filter-body:focus-visible ~ .sticky-filter label[for="filter-body"],
+input#filter-trim:focus-visible ~ .sticky-filter label[for="filter-trim"] {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* 4. Active Button Highlight (Kai checkbox pažymėtas) */
+#filter-engine:checked ~ .sticky-filter label[for="filter-engine"],
+#filter-chassis:checked ~ .sticky-filter label[for="filter-chassis"],
+#filter-body:checked ~ .sticky-filter label[for="filter-body"],
+#filter-trim:checked ~ .sticky-filter label[for="filter-trim"] {
+    background-color: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 10px rgba(92, 225, 230, 0.4);
+}
+
+/* 5. THE MULTIPLE FILTERING LOGIC */
+
+/* 
+   Logika: 
+   Jei BENT VIENAS checkbox'as yra pažymėtas, mes iš pradžių PASLEPIAME visas korteles.
+   Jei nei vienas nėra pažymėtas - viskas matoma pagal nutylėjimą.
+*/
+.filter-cb:checked ~ section .filterable-item,
+.filter-cb:checked ~ section.filterable-item {
+    display: none;
+}
+
+/* 
+   Tada mes ATIDENGIAME tik tas korteles, kurios atitinka pažymėtus checkbox'us.
+   Jei pažymėti keli (pvz., Engine ir Trim), CSS atidengs abi kategorijas!
+*/
+
+/* ENGINE */
+#filter-engine:checked ~ section .cat-engine.parts-category { display: flex; }
+#filter-engine:checked ~ section .cat-engine.tuning-card { display: grid; }
+
+/* CHASSIS */
+#filter-chassis:checked ~ section .cat-chassis.parts-category { display: flex; }
+#filter-chassis:checked ~ section .cat-chassis.tuning-card { display: grid; }
+
+/* BODY */
+#filter-body:checked ~ section .cat-body.parts-category { display: flex; }
+
+/* TRIM SPECS TABLE (Visas blokas atidengiamas kaip 'block') */
+#filter-trim:checked ~ section.cat-trim { display: block; }
+
+/* Animacija gražiam perėjimui */
+.filterable-item {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }

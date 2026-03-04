@@ -31,180 +31,268 @@
         <h1>Vehicle Assembly & Bolt Sizes</h1>
         <p>Follow the factory order of operations. Legend: <strong>(Size x Quantity)</strong> | <strong>S = Screwdriver</strong></p>
 
+        <!-- 1. HIDDEN CHECKBOXES (CSS Logic) -->
+        <input type="checkbox" id="filter-engine" name="part-filter" class="filter-cb">
+        <input type="checkbox" id="filter-chassis" name="part-filter" class="filter-cb">
+        <input type="checkbox" id="filter-body" name="part-filter" class="filter-cb">
+        <input type="checkbox" id="filter-trim" name="part-filter" class="filter-cb">
+
+        <!-- 2. STICKY EXPANDABLE FILTER MENU -->
+        <details class="sticky-filter" open>
+            <summary class="filter-summary">Filter Manual Contents</summary>
+            <div class="filter-controls">
+                <label for="filter-engine">Engine & Exhaust</label>
+                <label for="filter-chassis">Chassis & Gearbox</label>
+                <label for="filter-body">Body & Interior</label>
+                <label for="filter-trim">Trim Specs</label>
+            </div>
+        </details>
+
+        <!-- 3. PARTS LIST -->
         <section aria-labelledby="parts-index-title" class="parts-index-section" id="parts-index">
             <h2 id="parts-index-title">Comprehensive Parts Index</h2>
             
             <div class="parts-grid">
                 
-                <!-- ENGINE & EXHAUST -->
-                <article class="parts-category">
-                    <h3>Engine & Exhaust</h3>
-                    <ul class="bolt-list">
-                        <li><strong>Crankshaft:</strong> Into block (No bolts)</li>
-                        <li><strong>Main Bearing x5:</strong> 10x2</li>
-                        <li><strong>Pistons x4:</strong> 8x2</li>
-                        <li><strong>Crankshaft Pulley:</strong> 13x1</li>
-                        <li><strong>Aux Shaft:</strong> 6x3</li>
-                        <li><strong>Aux Shaft Sprocket:</strong> 14x1</li>
-                        <li><strong>Head Gasket:</strong> (No bolts)</li>
-                        <li><strong>Cylinder Head:</strong> 9x10</li>
-                        <li><strong>Camshaft:</strong> 6x2</li>
-                        <li><strong>Camshaft Sprocket:</strong> 14x1</li>
-                        <li><strong>Water Pump:</strong> 7x4</li>
-                        <li><strong>Water Pump Pulley:</strong> 8x4</li>
-                        <li><strong>Distributor:</strong> S x 1 <a href="#dist-tuning" class="jump-btn" aria-label="Jump to Distributor Tuning">Tune</a></li>
-                        <li><strong>Rockers x8:</strong> S x 2 (each) <a href="#rocker-tuning" class="jump-btn" aria-label="Jump to Rocker Tuning">Tune</a></li>
-                        <li><strong>Rocker Cover:</strong> 7x8</li>
-                        <li><strong>Thermostat & Housing:</strong> 8x2</li>
-                        <li><strong>Fuel Pump:</strong> 7x2</li>
-                        <li><strong>Timing Belt Cover:</strong> 6x2</li>
-                        <li><strong>Alternator:</strong> 11x1</li>
-                        <li><strong>Oil Pump & Filter:</strong> 6x2 (Filter by hand)</li>
-                        <li><strong>Oil Pan:</strong> 7x10 | Drain Plug: Size 13</li>
-                        <li><strong>Starter:</strong> 8x3, 6x1</li>
-                        <li><strong>Engine Mounts:</strong> 12x2 (Hoist: 10)</li>
-                        <li><strong>Carburettor:</strong> 9x5 <a href="#carb-tuning" class="jump-btn" aria-label="Jump to Carburettor Tuning">Tune</a></li>
-                        <li><strong>Exhaust Manifold/Headers:</strong> 9x8</li>
-                        <li><strong>Exhaust Front:</strong> 8x2, 7x1</li>
-                        <li><strong>Exhaust Rear:</strong> 7x2, 9x1</li>
-                        <li><strong>Muffler:</strong> 8x1</li>
-                    </ul>
+                <!-- ENGINE CATEGORY -->
+                <article class="parts-category filterable-item cat-engine">
+                    <div class="parts-content">
+                        <h3>Engine & Exhaust</h3>
+                        <ul class="bolt-list">
+                            <li><strong>Crankshaft:</strong> Into block (No bolts)</li>
+                            <li><strong>Main Bearing x5:</strong> 10x2</li>
+                            <li><strong>Pistons x4:</strong> 8x2</li>
+                            <li><strong>Crankshaft Pulley:</strong> 13x1 <a href="#crank-alignment" class="jump-btn" aria-label="Jump to Crankshaft Alignment">Align</a></li>
+                            <li><strong>Aux Shaft:</strong> 6x3</li>
+                            <li><strong>Aux Shaft Sprocket:</strong> 14x1</li>
+                            <li><strong>Head Gasket:</strong> (No bolts)</li>
+                            <li><strong>Cylinder Head:</strong> 9x10</li>
+                            <li><strong>Camshaft:</strong> 6x2</li>
+                            <li><strong>Camshaft Sprocket:</strong> 14x1 <a href="#cam-alignment" class="jump-btn" aria-label="Jump to Camshaft Alignment">Align</a></li>
+                            <li><strong>Water Pump:</strong> 7x4</li>
+                            <li><strong>Water Pump Pulley:</strong> 8x4</li>
+                            <li><strong>Distributor:</strong> S x 1 <a href="#dist-tuning" class="jump-btn" aria-label="Jump to Distributor Tuning">Tune</a></li>
+                            <li><strong>Rockers x8:</strong> S x 2 (each) <a href="#rocker-tuning" class="jump-btn" aria-label="Jump to Rocker Tuning">Tune</a></li>
+                            <li><strong>Rocker Cover:</strong> 7x8</li>
+                            <li><strong>Thermostat & Housing:</strong> 8x2</li>
+                            <li><strong>Fuel Pump:</strong> 7x2</li>
+                            <li><strong>Timing Belt Cover:</strong> 6x2</li>
+                            <li><strong>Alternator:</strong> 11x1</li>
+                            <li><strong>Oil Pump & Filter:</strong> 6x2 (Filter by hand)</li>
+                            <li><strong>Oil Pan:</strong> 7x10 | Drain Plug: Size 13</li>
+                            <li><strong>Starter:</strong> 8x3, 6x1</li>
+                            <li><strong>Engine Mounts:</strong> 12x2 (Hoist: 10)</li>
+                            <li><strong>Carburettor:</strong> 9x5 <a href="#carb-tuning" class="jump-btn" aria-label="Jump to Carburettor Tuning">Tune</a></li>
+                            <li><strong>Exhaust Manifold/Headers:</strong> 9x8</li>
+                            <li><strong>Exhaust Front:</strong> 8x2, 7x1</li>
+                            <li><strong>Exhaust Rear:</strong> 7x2, 9x1</li>
+                            <li><strong>Muffler:</strong> 8x1</li>
+                        </ul>
+                    </div>
+                    <div class="parts-image-container">
+                        <img src="img/parts-engine.jpg" alt="Exploded view of the Corris Rivett Engine block and components" class="category-img">
+                    </div>
                 </article>
 
-                <!-- SUSPENSION & GEARBOX -->
-                <article class="parts-category">
-                    <h3>Chassis & Gearbox</h3>
-                    <ul class="bolt-list">
-                        <li><strong>Front Lower Control Arm L+R:</strong> 14x1</li>
-                        <li><strong>Front Upper Control Arm L+R:</strong> 14x2</li>
-                        <li><strong>Brake Assembly L+R (Front):</strong> 12x2</li>
-                        <li><strong>Front Shock Absorber L+R:</strong> 12x1, 8x2 <a href="#suspension-tuning" class="jump-btn" aria-label="Jump to Suspension Tuning">Tune</a></li>
-                        <li><strong>Steering Rack:</strong> 9x4, 11x2</li>
-                        <li><strong>Front Link L+R:</strong> 12x1, 11x2</li>
-                        <li><strong>Steering Shaft:</strong> 6x1</li>
-                        <li><strong>Rear Lower Control Arm L+R:</strong> 13x1</li>
-                        <li><strong>Rear Upper Control Arm L+R:</strong> 15x1</li>
-                        <li><strong>Rear Differential:</strong> 15x4</li>
-                        <li><strong>Rear Shock Absorber L+R:</strong> 13x2 <a href="#suspension-tuning" class="jump-btn" aria-label="Jump to Suspension Tuning">Tune</a></li>
-                        <li><strong>Wheels x4:</strong> 15x4 <a href="#wheel-alignment" class="jump-btn" aria-label="Jump to Wheel Alignment">Align</a></li>
-                        <li><hr class="mini-divider"></li>
-                        <li><strong>Flywheel / Flexplate:</strong> 12x6</li>
-                        <li><strong>Clutch:</strong> 8x6</li>
-                        <li><strong>Gearbox:</strong> 11x6</li>
-                        <li><strong>Driveshaft:</strong> 8x4</li>
-                        <li><strong>Gearbox Crossmember:</strong> 14x2</li>
-                    </ul>
+                <!-- CHASSIS CATEGORY -->
+                <article class="parts-category filterable-item cat-chassis">
+                    <div class="parts-content">
+                        <h3>Chassis & Gearbox</h3>
+                        <ul class="bolt-list">
+                            <li><strong>Front Lower Control Arm L+R:</strong> 14x1</li>
+                            <li><strong>Front Upper Control Arm L+R:</strong> 14x2</li>
+                            <li><strong>Brake Assembly L+R (Front):</strong> 12x2</li>
+                            <li><strong>Front Shock Absorber L+R:</strong> 12x1, 8x2 <a href="#suspension-tuning" class="jump-btn" aria-label="Jump to Suspension Tuning">Tune</a></li>
+                            <li><strong>Steering Rack:</strong> 9x4, 11x2</li>
+                            <li><strong>Front Link L+R:</strong> 12x1, 11x2</li>
+                            <li><strong>Steering Shaft:</strong> 6x1</li>
+                            <li><strong>Rear Lower Control Arm L+R:</strong> 13x1</li>
+                            <li><strong>Rear Upper Control Arm L+R:</strong> 15x1</li>
+                            <li><strong>Rear Differential:</strong> 15x4</li>
+                            <li><strong>Rear Shock Absorber L+R:</strong> 13x2 <a href="#suspension-tuning" class="jump-btn" aria-label="Jump to Suspension Tuning">Tune</a></li>
+                            <li><strong>Wheels x4:</strong> 15x4 <a href="#wheel-alignment" class="jump-btn" aria-label="Jump to Wheel Alignment">Align</a></li>
+                            <li><hr class="mini-divider"></li>
+                            <li><strong>Flywheel / Flexplate:</strong> 12x6</li>
+                            <li><strong>Clutch:</strong> 8x6</li>
+                            <li><strong>Gearbox:</strong> 11x6</li>
+                            <li><strong>Driveshaft:</strong> 8x4</li>
+                            <li><strong>Gearbox Crossmember:</strong> 14x2</li>
+                        </ul>
+                    </div>
+                    <div class="parts-image-container">
+                        <img src="img/parts-chassis.jpg" alt="Suspension and chassis layout" class="category-img">
+                    </div>
                 </article>
 
-                <!-- BODYWORK, INTERIOR & AUXILIARY -->
-                <article class="parts-category">
-                    <h3>Bodywork, Interior & Aux</h3>
-                    <ul class="bolt-list">
-                        <li><strong>Fender & Doors L+R:</strong> 8x6 (Fender), 8x4 (Doors)</li>
-                        <li><strong>Bumpers (Front/Rear):</strong> 10x2</li>
-                        <li><strong>Headlight & Taillight Assm.:</strong> 9x2, 8x2</li>
-                        <li><strong>Grille & Bootlid & Hood:</strong> 9x2, 8x4, 7x4</li>
-                        <li><strong>Heaterbox & Vent Box:</strong> 7x4</li>
-                        <li><strong>Radiator & Wiper Motor:</strong> 10x4, 7x4</li>
-                        <li><strong>Steering Column:</strong> 12x2</li>
-                        <li><strong>Ignition Coil:</strong> 8x2</li>
-                        <li><strong>All Hoses (Rad/Heater):</strong> S x 2</li>
-                        <li><strong>Brake Master Cylinder & Lines:</strong> 8x4, 7x6, 10x2</li>
-                        <li><strong>Chassis Earth Cables:</strong> 8x3</li>
-                        <li><hr class="mini-divider"></li>
-                        <li><strong>Pedal Box:</strong> 8x4</li>
-                        <li><strong>Seats (Front L+R):</strong> 10x3, 8x1</li>
-                        <li><strong>Dashboard & Covers:</strong> 7x2, S x 2</li>
-                        <li><strong>Instrument Panel:</strong> S x 2</li>
-                        <li><strong>Steering Wheel & Handbrake:</strong> 14x1, 7x2, 6x1</li>
-                        <li><strong>Fuel Tank & AFR Gauge:</strong> 10x2, S x 1</li>
-                    </ul>
+                <!-- BODY CATEGORY -->
+                <article class="parts-category filterable-item cat-body">
+                    <div class="parts-content">
+                        <h3>Bodywork, Interior & Aux</h3>
+                        <ul class="bolt-list">
+                            <li><strong>Fender & Doors L+R:</strong> 8x6 (Fender), 8x4 (Doors)</li>
+                            <li><strong>Bumpers (Front/Rear):</strong> 10x2</li>
+                            <li><strong>Headlight & Taillight Assm.:</strong> 9x2, 8x2</li>
+                            <li><strong>Grille & Bootlid & Hood:</strong> 9x2, 8x4, 7x4</li>
+                            <li><strong>Heaterbox & Vent Box:</strong> 7x4</li>
+                            <li><strong>Radiator & Wiper Motor:</strong> 10x4, 7x4</li>
+                            <li><strong>Steering Column:</strong> 12x2</li>
+                            <li><strong>Ignition Coil:</strong> 8x2</li>
+                            <li><strong>All Hoses (Rad/Heater):</strong> S x 2</li>
+                            <li><strong>Brake Master Cylinder & Lines:</strong> 8x4, 7x6, 10x2</li>
+                            <li><strong>Chassis Earth Cables:</strong> 8x3</li>
+                            <li><hr class="mini-divider"></li>
+                            <li><strong>Pedal Box:</strong> 8x4</li>
+                            <li><strong>Seats (Front L+R):</strong> 10x3, 8x1</li>
+                            <li><strong>Dashboard & Covers:</strong> 7x2, S x 2</li>
+                            <li><strong>Instrument Panel:</strong> S x 2</li>
+                            <li><strong>Steering Wheel & Handbrake:</strong> 14x1, 7x2, 6x1</li>
+                            <li><strong>Fuel Tank & AFR Gauge:</strong> 10x2, S x 1</li>
+                        </ul>
+                    </div>
+                    <div class="parts-image-container">
+                        <img src="img/parts-body.jpg" alt="Interior dashboard and body panels" class="category-img">
+                    </div>
                 </article>
-
             </div>
         </section>
 
-        <hr class="section-divider">
-
-        <section aria-labelledby="tuning-guides-title">
+        <!-- 4. TUNING GUIDES -->
+        <section aria-labelledby="tuning-guides-title" id="tuning-section">
             <h2 id="tuning-guides-title">Tuning Procedures</h2>
 
-            <article id="wheel-alignment" class="tuning-card" tabindex="-1">
-                <h3>Wheel Alignment</h3>
-                <ol>
-                    <li>Take a <strong>Size 15 Wrench</strong>.</li>
-                    <li>Scroll the way the wheel is misaligned until it doesn’t move anymore.</li>
-                    <li>Scroll exactly <strong>60 times</strong> the opposite way to ideally align the wheels.</li>
-                </ol>
-                <p><em>Note: Do not align wheels immediately after suspension assembly as it may bug. Save the game first.</em></p>
-                <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+            <article id="crank-alignment" class="tuning-card filterable-item cat-engine" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Crankshaft Alignment</h3>
+                    <p>Using a <strong>Size 13 Wrench</strong>, scroll up until the mark is at the 11 o'clock position.</p>
+                    <ul>
+                        <li>The triangle chip in the pulley must align perfectly with the ledge on the engine block.</li>
+                        <li><strong>Important:</strong> Do this BEFORE installing the Timing Belt.</li>
+                    </ul>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-crank.jpg" alt="Crankshaft pulley alignment mark aligning with engine block ledge">
+                </div>
             </article>
 
-            <article id="rocker-tuning" class="tuning-card" tabindex="-1">
-                <h3>Rocker Tuning</h3>
-                <ol>
-                    <li>Tighten each rocker properly twice with a screwdriver.</li>
-                    <li>With a <strong>Size 12 Wrench</strong>, scroll all the way up on the rocker until the nut stops moving.</li>
-                    <li>Scroll the opposite way <strong>58 times</strong>.</li>
-                </ol>
-                <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+            <article id="cam-alignment" class="tuning-card filterable-item cat-engine" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Camshaft Alignment</h3>
+                    <p>Using a <strong>Size 14 Wrench</strong>, scroll up/down to rotate the sprocket.</p>
+                    <ul>
+                        <li>The arrow on the sprocket must align with the bolt behind it.</li>
+                        <li>Once both Crankshaft and Camshaft are aligned, install the Timing Belt immediately.</li>
+                    </ul>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-cam.jpg" alt="Camshaft sprocket arrow alignment with the bolt on the head">
+                </div>
             </article>
 
-            <article id="carb-tuning" class="tuning-card" tabindex="-1">
-                <h3>Carburettor Tuning</h3>
-                <p>Use a <strong>Screwdriver</strong> while the engine is running.</p>
-                <ul>
-                    <li><strong>Performance Target:</strong> ~15.0 AFR.</li>
-                    <li><strong>Inspection Standard:</strong> 14.0 - 15.0 AFR at idle.</li>
-                    <li><strong>Racing Carb:</strong> Scroll up 44 times on all 4 screws, then down 10 times.</li>
-                </ul>
-                <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+            <article id="wheel-alignment" class="tuning-card filterable-item cat-chassis" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Wheel Alignment</h3>
+                    <ol>
+                        <li>Take a <strong>Size 15 Wrench</strong>.</li>
+                        <li>Scroll the way the wheel is misaligned until it doesn’t move anymore.</li>
+                        <li>Scroll exactly <strong>60 times</strong> the opposite way to ideally align the wheels.</li>
+                    </ol>
+                    <p><em>Note: Do not align wheels immediately after suspension assembly as it may bug. Save the game first.</em></p>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-alignment.jpg" alt="Visual guide for aligning the front wheels with a wrench">
+                </div>
             </article>
 
-            <article id="dist-tuning" class="tuning-card" tabindex="-1">
-                <h3>Distributor Tuning</h3>
-                <ol>
-                    <li>Screw distributor fully in to start the engine, then unscrew by 1 click.</li>
-                    <li>If you hear a high-pitched chirping (too advanced), scroll down until it stops.</li>
-                    <li>Scroll up until chirping begins again.</li>
-                    <li>Set distributor to <strong>1 position away</strong> from the chirping sound.</li>
-                </ol>
-                <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+            <article id="rocker-tuning" class="tuning-card filterable-item cat-engine" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Rocker Tuning</h3>
+                    <ol>
+                        <li>Tighten each rocker properly twice with a screwdriver.</li>
+                        <li>With a <strong>Size 12 Wrench</strong>, scroll all the way up on the rocker until the nut stops moving.</li>
+                        <li>Scroll the opposite way <strong>58 times</strong>.</li>
+                    </ol>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-rockers.jpg" alt="Valve cover removed showing rocker arms and adjustment points">
+                </div>
             </article>
 
-            <article id="suspension-tuning" class="tuning-card" tabindex="-1">
-                <h3>Rally Suspension Tuning</h3>
-                <p>Weight distribution is 55F-45R. Blue Knob (Bump), Red Knob (Rebound).</p>
-                <table class="tuning-table">
-                    <caption>Recommended Rally Setup</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Axle</th>
-                            <th scope="col">Blue Knob (Bump)</th>
-                            <th scope="col">Red Knob (Rebound)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Front</th>
-                            <td>Max</td>
-                            <td>Max - 5 clicks</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Rear</th>
-                            <td>Max - 5 clicks</td>
-                            <td>Max</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+            <article id="carb-tuning" class="tuning-card filterable-item cat-engine" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Carburettor Tuning</h3>
+                    <p>Use a <strong>Screwdriver</strong> while the engine is running.</p>
+                    <ul>
+                        <li><strong>Performance Target:</strong> ~15.0 AFR.</li>
+                        <li><strong>Inspection Standard:</strong> 14.0 - 15.0 AFR at idle.</li>
+                        <li><strong>Racing Carb:</strong> Scroll up 44 times on all 4 screws, then down 10 times.</li>
+                    </ul>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-carburettor.jpg" alt="Carburettor adjustment screws highlighted">
+                </div>
+            </article>
+
+            <article id="dist-tuning" class="tuning-card filterable-item cat-engine" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Distributor Tuning</h3>
+                    <ol>
+                        <li>Screw distributor fully in to start the engine, then unscrew by 1 click.</li>
+                        <li>If you hear a high-pitched chirping (too advanced), scroll down until it stops.</li>
+                        <li>Scroll up until chirping begins again.</li>
+                        <li>Set distributor to <strong>1 position away</strong> from the chirping sound.</li>
+                    </ol>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-distributor.jpg" alt="Distributor rotation adjustment">
+                </div>
+            </article>
+
+            <article id="suspension-tuning" class="tuning-card filterable-item cat-chassis" tabindex="-1">
+                <div class="tuning-content">
+                    <h3>Rally Suspension Tuning</h3>
+                    <p>Weight distribution is 55F-45R. Blue Knob (Bump), Red Knob (Rebound).</p>
+                    <table class="tuning-table">
+                        <caption>Recommended Rally Setup</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Axle</th>
+                                <th scope="col">Blue Knob (Bump)</th>
+                                <th scope="col">Red Knob (Rebound)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Front</th>
+                                <td>Max</td>
+                                <td>Max - 5 clicks</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Rear</th>
+                                <td>Max - 5 clicks</td>
+                                <td>Max</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="#parts-index" class="back-btn">↑ Back to Parts List</a>
+                </div>
+                <div class="tuning-image">
+                    <img src="img/tune-suspension.jpg" alt="Rally shock absorbers showing blue and red adjustment knobs">
+                </div>
             </article>
 
         </section>
 
-        <section aria-labelledby="specs-title" class="specs-section">
+        <!-- 5. TRIM FEATURES TABLE -->
+        <!-- Ši sekcija dabar pati yra filterable-item ir priklauso cat-trim -->
+        <section aria-labelledby="specs-title" class="specs-section filterable-item cat-trim">
             <h2 id="specs-title">Model Trim Features</h2>
-            <div class="table-container" tabindex="0" role="region" aria-label="Scrollable trim features table">
+            <div class="table-container" tabindex="0" aria-label="Scrollable trim features table">
                 <table class="specs-table">
                     <caption>Comparison of mechanical features across L, LX, SLX, and GT trims</caption>
                     <thead>
