@@ -1,28 +1,29 @@
-# Corris Rivett Workshop Manual (ND1)
+# Projektas Corris Rivett Workshop Manual
 
-Tai yra pirmojo namų darbo (ND1) projektas moduliui "Interneto technologijos".
-Svetainė skirta žaidimo "My Winter Car" automobiliui "Corris Rivett" – tai interaktyvus techninis gidas (Workshop Manual).
+Nuoroda į projektą:[Corris Rivett Workshop Manual](https://turmenas.github.io/)
 
-**Autorius:** Gabrielius Tumenas  
-**Grupė:** DIPf-23 
-**GitHub Repozitorija:** [https://github.com/Turmenas/Turmenas.github.io](https://github.com/Turmenas/Turmenas.github.io)  
-**Tiesioginė nuoroda (Live):** [https://turmenas.github.io/](https://turmenas.github.io/)
+Šis projektas – tai skaitmeninis Corris Rivett automobilio remonto ir derinimo vadovas. Tai statinis tinklalapis, sukurtas suteikti aiškią, lengvai prieinamą techninę informaciją automobilių entuziastams.
 
-## Projekto aprašymas
-Projektas sukurtas naudojant HTML5 ir CSS3. Svetainė susideda iš trijų puslapių:
-1. **Home (`index.html`)** – Įvadas, automobilio aprašymas.
-2. **Parts & Specs (`parts.html`)** – Išsamus detalių sąrašas, varžtų dydžiai ir interaktyvus derinimo (tuning) gidas.
-3. **Mechanic's Corner (`contact.html`)** – Gedimų registravimo forma.
+## Kaip paleisti projektą?
+Projektas veikia be jokios serverinės dalies ar duomenų bazių:
+- Naršyklėje: Paspauskite aukščiau esančią nuorodą.
+- Lokalioje aplinkoje: Atsisiųskite repozitoriją ir atidarykite index.html failą bet kurioje interneto naršyklėje.
 
-## Panaudoti elementai
-- **HTML:** Semantinės žymos (`<header>`, `<main>`, `<footer>`, `<article>`), lentelės, sąrašai, formos, nuorodos (jump-links).
-- **CSS:** Tamsi tema (Dark Mode), Flexbox ir Grid išdėstymas, CSS kintamieji (`:root`), pritaikomumas mobiliesiems įrenginiams (`@media`).
-- **Accessibility (AAA):** Spalvų kontrastas > 7:1, `tabindex` valdymas klaviatūra, `aria-label` atributai, "Skip to content" nuoroda.
+## Struktūra
+- index.html – Pagrindinis puslapis su gido įvadu ir bendra informacija.
+- parts.html – Techninių detalių sąrašas, specifikacijos ir derinimo (tuning) instrukcijos.
+- contact.html – Mechaniko pagalbos forma gedimų registravimui.
+- css/style.css – Pagrindinis stilių failas, atsakingas už dizainą ir interaktyvius elementus.
+- img/ – Katalogas su projekte naudojamais vaizdais.
 
-## Kaip paleisti projektą
-1. Atsisiųskite failus.
-2. Atidarykite `index.html` bet kurioje naršyklėje.
-3. Arba eikite adresu: https://turmenas.github.io/
+## Projekto funkcijos (Project features)
+- CSS filtravimo sistema: parts.html puslapyje įdiegta interaktyvi filtravimo sistema, veikianti be JavaScript pagalbos. Naudojant modernius CSS selektorius (:has(), :checked), vartotojai gali filtruoti turinį pagal kategorijas, realiuoju laiku rodant ar slepiant atitinkamas detales.
+- Prieinamumas (Accessibility): Įdiegti focus-visible kontūrai ir šuolinės nuorodos (Skip to main content). Naudojami tinkami ARIA atributai ir taikomas aukštas spalvų kontrastas.
+- Responsive dizainas: Svetainė yra visiškai pritaikyta mobiliiesiems įrenginiams naudojant CSS Grid ir Flexbox.
+- Interaktyvumas: Puslapyje naudojami "Jump-links" (nuorodos su href="#id"), leidžiantys vartotojui greitai peršokti nuo detalių sąrašo tiesiai prie konkrečios derinimo instrukcijos.
 
-## Kreditai
-Informacija ir paveikslėliai paimti iš bendruomenės sukurto "Corris Rivett Workshop Manual" (Autorius: DynoSaw).
+# Autorius (Authors)
+
+[Gabrielius Tumėnas](https://github.com/Turmenas)
+
+Gabrielius Tumėnas: [Github](https://github.com/Turmenas)
