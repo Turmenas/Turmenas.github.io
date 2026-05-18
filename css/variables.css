@@ -1,0 +1,116 @@
+/* ==========================================================================
+   CORRIS RIVETT WORKSHOP MANUAL
+   variables.css — CSS Custom Properties (Design Tokens)
+   
+   This file defines ALL design tokens for the entire site.
+   Imported by: style.css, nd2-style.css
+   
+   Channel colour scheme:
+     Blue  (#000080) = P100-P300 — Information / Manual pages
+     Amber (#1a0f00) = P400      — VIN Registry / Lookup
+     Green (#001100) = P500      — Workshop / Build Log
+   ========================================================================== */
+
+:root {
+
+    /* ------------------------------------------------------------------
+       SHARED TELETEXT BASE
+       Colours used across all channels
+    ------------------------------------------------------------------ */
+
+    /* klasikine 7 spalvu teletext palete */
+    --tt-white:   #ffffff;
+    --tt-cyan:    #00ffff;
+    --tt-yellow:  #ffff00;
+    --tt-green:   #00ff00;
+    --tt-magenta: #ff00ff;
+    --tt-red:     #ff0000;
+    --tt-black:   #000000;
+
+    /* sriftai -- VT323 imituoja sena terminalo teksta */
+    --tt-font: 'VT323', 'Courier New', Courier, monospace;
+    --tt-font-size-base: 18px;
+    --tt-font-size-lg:   22px;
+    --tt-font-size-xl:   28px;
+    --tt-font-size-sm:   15px;
+    --tt-font-size-xs:   13px;
+
+    /* fokuso ziedas -- rodo kuris elementas aktyvus */
+    --tt-focus-ring: 3px solid #ffff00;
+
+    /* sienos trumpiniai */
+    --tt-border-cyan:    2px solid #00ffff;
+    --tt-border-yellow:  2px solid #ffff00;
+    --tt-border-magenta: 2px solid #ff00ff;
+    --tt-border-green:   2px solid #00ff00;
+    --tt-border-amber:   2px solid #ffb300;
+
+    /* tarpai */
+    --tt-space-xs:  4px;
+    --tt-space-sm:  8px;
+    --tt-space-md:  16px;
+    --tt-space-lg:  24px;
+    --tt-space-xl:  32px;
+
+    /* isdestymo kintamieji */
+    --tt-max-width:       960px;
+    --tt-max-width-wide:  95%;
+    --tt-padding-wide:    32px;
+
+
+    /* ------------------------------------------------------------------
+       P100–P300 CHANNEL: BLUE (Information / Manual)
+       Used in: style.css  →  index.html, parts.html, contact.html
+    ------------------------------------------------------------------ */
+
+    --blue-bg:          #000080;   /* tamsiai melyna fono spalva */
+    --blue-surface:     #000000;   /* juoda -- korteles fonas */
+    --blue-surface-alt: #000033;   /* lenteles eiluciu pakaitinė spalva */
+    --blue-text:        #ffffff;   /* pagrindinis tekstas */
+    --blue-text-muted:  #aaaaaa;   /* pagalbinis tekstas */
+
+    /* akcento spalvos melnynajam kanalui */
+    --blue-accent-primary:   #00ffff;  /* zydra -- antraštes, sienos, navigacija */
+    --blue-accent-secondary: #ffff00;  /* geltona -- svarbus tekstas, duomenys */
+    --blue-accent-action:    #00ff00;  /* zalia -- navigacija, formos laukai */
+    --blue-accent-label:     #ff00ff;  /* rožine -- formos etiketes */
+    --blue-accent-banner:    #ff0000;  /* raudona -- sekciju antrašciu fonas */
+
+
+    /* ------------------------------------------------------------------
+       P400 CHANNEL: AMBER (VIN Registry / Lookup)
+       Used in: nd2-style.css  →  vin.html
+    ------------------------------------------------------------------ */
+
+    --amber-bg:          #1a0f00;   /* tamsus rudas fonas */
+    --amber-surface:     #0d0700;   /* beveik juoda -- korteles fonas */
+    --amber-surface-alt: #261500;   /* siek tiek šviesesnė -- lenteles eilutes */
+    --amber-text:        #ffcc66;   /* šiltas gintaras -- pagrindinis tekstas */
+    --amber-text-muted:  #996633;   /* pritemintas gintaras -- antrinis tekstas */
+
+    /* akcento spalvos gintaro kanalui */
+    --amber-accent-primary:   #ffb300;  /* ryskus gintaras -- antraštes, sienos */
+    --amber-accent-secondary: #ff6600;  /* oranzine -- pabrežimas, skydeliai */
+    --amber-accent-action:    #ffff00;  /* geltona -- mygtukai, pabrežimai */
+    --amber-accent-dim:       #664400;  /* tamsus gintaras -- subtilios sienos */
+
+
+    /* ------------------------------------------------------------------
+       P500 CHANNEL: GREEN (Workshop / Build Log)
+       Used in: nd2-style.css  →  buildlog.html
+    ------------------------------------------------------------------ */
+
+    --green-bg:          #001100;   /* tamsiai zalia fono spalva */
+    --green-surface:     #000a00;   /* beveik juoda zalia -- korteles fonas */
+    --green-surface-alt: #001a00;   /* siek tiek šviesesnė -- lenteles eilutes */
+    --green-text:        #00ff41;   /* fosforo zalia -- pagrindinis tekstas */
+    --green-text-muted:  #007a1f;   /* pritemintas zalia -- antrinis tekstas */
+
+    /* akcento spalvos žaliajam kanalui */
+    --green-accent-primary:   #00ff41;  /* ryskus fosforas -- antraštes */
+    --green-accent-secondary: #ffff00;  /* geltona -- progresas, pabrežimai */
+    --green-accent-action:    #00ffff;  /* zydra -- mygtukai, nuorodos */
+    --green-accent-banner:    #ff0000;  /* raudona -- perspejimai */
+    --green-accent-dim:       #004d13;  /* tamsiai zalia -- subtilios sienos */
+
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO meta tags -->
+    <meta name="description" content="Decode your Corris Rivett VIN plate. Enter your Vehicle Identification Number to reveal trim, engine, colour, gearbox and factory spec.">
+    <meta name="keywords" content="Corris Rivett VIN, VIN Decoder, My Winter Car, Vehicle Identification, Trim Decoder">
+    <meta name="author" content="Turmenas">
+    <title>P400 VIN Decoder | Corris Rivett Manual</title>
+
+    <!-- Bootstrap 5 — used for grid utilities and badge components on decode output -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- ND2 stylesheet (imports variables.css internally) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/nd2-style.css">
+</head>
+
+<!-- channel-amber applies the P400 amber colour scheme from nd2-style.css -->
+<body class="channel-amber">
+
+    <!-- Skip link for keyboard / screen reader accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="logo-container">
+            <!-- Site-wide logo -->
+            <h2>CORRIS</h2>
+        </div>
+
+        <!-- Page number indicator — amber channel is P400 -->
+        <span class="page-num">P400</span>
+
+        <!-- Main navigation — shared across all 5 pages -->
+        <nav id="main-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="index.html">P100 Home</a></li>
+                <li><a href="parts.html">P200 Parts</a></li>
+                <li><a href="contact.html">P300 Mechanic</a></li>
+                <li><a href="vin.html" class="active" aria-current="page">P400 VIN</a></li>
+                <li><a href="buildlog.html">P500 Build Log</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- Page title banner -->
+        <h1>VIN Plate Decoder</h1>
+        <p>Enter your Corris Rivett Vehicle Identification Number below. All 24 fields will be decoded from the factory specification database.</p>
+
+        <!-- ============================================================
+             VIN INPUT SECTION
+             Bootstrap .mb-3 utility class used for spacing
+        ============================================================ -->
+        <section class="vin-input-section" aria-labelledby="vin-input-title">
+            <h2 id="vin-input-title">Enter VIN</h2>
+
+            <!-- VIN input label -->
+            <label class="vin-label" for="vin-input">
+                VEHICLE IDENTIFICATION NUMBER
+            </label>
+
+            <!-- 
+                VIN text input
+                Bootstrap .form-control applied for ND2 requirement
+                maxlength enforces the 14-character Corris VIN format
+                aria-describedby links to the helper text below
+            -->
+            <input
+                type="text"
+                id="vin-input"
+                class="vin-field form-control"
+                maxlength="32"
+                placeholder="E.G. UCBBGPU63590"
+                autocomplete="off"
+                autocapitalize="characters"
+                spellcheck="false"
+                aria-describedby="vin-counter vin-format-help"
+            >
+
+            <!-- Live character counter — updated by JS -->
+            <span id="vin-counter" class="vin-counter" aria-live="polite">0 CHARACTERS ENTERED</span>
+
+            <!-- Format hint -->
+            <p id="vin-format-help" style="color: var(--amber-text-muted); font-size: 15px; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px;">
+                Format: BB + VERSION + UCBBG + YEAR + MONTH + SERIAL(5) — see manual page 4
+            </p>
+
+            <!-- Validation error — hidden until JS shows it -->
+            <div id="vin-error" class="vin-error" role="alert" aria-live="assertive">
+                ⚠ INVALID VIN — CHECK YOUR NUMBER AND TRY AGAIN
+            </div>
+
+            <!-- 
+                Action buttons
+                Bootstrap .d-flex .gap-2 utility classes used here
+            -->
+            <div class="d-flex gap-2 mt-3">
+                <!-- Decode button — triggers decodeVIN() in JS -->
+                <button
+                    id="btn-decode"
+                    class="tt-btn tt-btn-primary"
+                    onclick="decodeVIN()"
+                    aria-label="Decode VIN"
+                >
+                    ► DECODE VIN
+                </button>
+
+                <!-- Clear button — triggers clearVIN() in JS -->
+                <button
+                    id="btn-clear"
+                    class="tt-btn tt-btn-secondary"
+                    onclick="clearVIN()"
+                    aria-label="Clear input"
+                >
+                    ✕ CLEAR
+                </button>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================================
+             DECODE RESULT
+             Hidden by default — JS adds .visible when decode succeeds
+        ============================================================ -->
+        <section
+            id="vin-result"
+            class="vin-result"
+            aria-labelledby="result-title"
+            aria-live="polite"
+        >
+            <h2 id="result-title">Decoded Specification</h2>
+
+            <!-- 
+                Summary bar — shows trim + year at a glance
+                Bootstrap .badge used here (overridden for teletext look in nd2-style.css)
+            -->
+            <div id="vin-summary" style="margin-bottom: 16px; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; color: var(--amber-text);">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Grid of decoded field cards — populated by JS -->
+            <div id="vin-grid" class="vin-grid">
+                <!-- JS injects .vin-card elements here -->
+            </div>
+
+            <!-- Copy to clipboard button -->
+            <div style="margin-top: 16px;">
+                <button
+                    id="btn-copy"
+                    class="tt-btn tt-btn-secondary"
+                    onclick="copyResult()"
+                    aria-label="Copy decoded spec to clipboard"
+                >
+                    ⎘ COPY SPEC
+                </button>
+                <span id="copy-confirm" style="display:none; margin-left: 12px; color: var(--tt-yellow); font-size: 15px; text-transform: uppercase; letter-spacing: 1px;">
+                    COPIED TO CLIPBOARD
+                </span>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================================
+             REFERENCE TABLE — VIN FIELD ORDER
+        ============================================================ -->
+        <section aria-labelledby="ref-title">
+            <h2 id="ref-title">VIN Field Reference</h2>
+            <p style="color: var(--amber-text-muted); font-size: 15px; text-transform: uppercase; letter-spacing: 1px;">
+                Fields are stamped in two rows on the VIN plate as shown below.
+            </p>
+
+            <!-- Bootstrap .table-responsive wraps our teletext table -->
+            <div class="tt-table-wrap table-responsive">
+                <table class="tt-table" aria-label="VIN field order reference">
+                    <caption style="color: var(--amber-text-muted); font-size: 13px; text-align: left; padding: 4px 0; text-transform: uppercase;">
+                        Top row: fields 1–10 | Bottom row: 11, 17, 18, 12, 19, 13, 20, 14, 21, 22, 15, 23, 24, 16
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Field</th>
+                            <th scope="col">Example</th>
+                            <th scope="col">Decoded</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">1–2</th><td>Type</td><td>BB</td><td>Rivett 2D Pillared Sedan (fixed)</td></tr>
+                        <tr><th scope="row">3</th><td>Version</td><td>G</td><td>SLX</td></tr>
+                        <tr><th scope="row">4</th><td>Country</td><td>U</td><td>Britain (fixed)</td></tr>
+                        <tr><th scope="row">5</th><td>Assembly Plant</td><td>C</td><td>Saarlouis</td></tr>
+                        <tr><th scope="row">6</th><td>Model</td><td>B</td><td>Rivett (fixed)</td></tr>
+                        <tr><th scope="row">7</th><td>Body Type</td><td>B</td><td>2D Pillared Sedan (fixed)</td></tr>
+                        <tr><th scope="row">8</th><td>Version (repeat)</td><td>G</td><td>SLX</td></tr>
+                        <tr><th scope="row">9</th><td>Year</td><td>P</td><td>1974 (Facelift)</td></tr>
+                        <tr><th scope="row">10</th><td>Month</td><td>U</td><td>October</td></tr>
+                        <tr><th scope="row">11–15</th><td>Serial Number</td><td>63590</td><td>Unique (5 digits)</td></tr>
+                        <tr><th scope="row">16</th><td>Drive</td><td>1</td><td>RWD (fixed)</td></tr>
+                        <tr><th scope="row">17–18</th><td>Engine</td><td>NE</td><td>High Performance 2.0</td></tr>
+                        <tr><th scope="row">19</th><td>Gearbox</td><td>7</td><td>3-spd Automatic</td></tr>
+                        <tr><th scope="row">20–21</th><td>Axle</td><td>BB</td><td>3.75 ratio + LSD</td></tr>
+                        <tr><th scope="row">22–23</th><td>Colour</td><td>FB</td><td>Sun Yellow + White roof</td></tr>
+                        <tr><th scope="row">24</th><td>Interior Trim</td><td>K</td><td>Tan</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 CORRIS AUTOMOBILES CO. LTD | GUIDE BY DYNOSAW | SITE BY TURMENAS</p>
+    </footer>
+
+    <!-- Bootstrap JS bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- VIN decoder logic — all JavaScript lives in js/vin.js -->
+    <script src="js/vin.js"></script>
+
+</body>
+</html>

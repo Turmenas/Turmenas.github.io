@@ -1,21 +1,39 @@
 /* ==========================================================================
-   1. VARIABLES & RESETS (AAA Accessibility Standards)
+   CORRIS RIVETT WORKSHOP MANUAL — TELETEXT THEME
+   P100-P300: Blue channel — Information / Manual pages
+   Inspired by Ceefax / Prestel / Minitel broadcast teletext aesthetics
+
+   variables.css is linked separately in each HTML <head> before this file.
    ========================================================================== */
+
+/* 1. importai ir nustatymai */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 :root {
-    /* Colors - High Contrast */
-    --bg-color: #121212;
-    --surface-color: #1e1e1e;
-    --text-color: #f5f5f5;
-    --text-muted: #b0b0b0;
-    --accent-color: #5ce1e6;
-    --accent-hover: #3bc2c8;
-    --focus-ring: 3px solid #ffab00;
-    
-    /* Typography */
-    --font-base: 1rem;
-    --font-h1: 2.5rem;
-    --font-h2: 1.75rem;
-    --font-h3: 1.25rem;
+    --bg-color: #000080;
+    --surface-color: #000000;
+    --surface-alt: #000033;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
+
+    --cyan:    #00ffff;
+    --yellow:  #ffff00;
+    --green:   #00ff00;
+    --magenta: #ff00ff;
+    --red:     #ff0000;
+    --white:   #ffffff;
+
+    --border-cyan: 2px solid #00ffff;
+    --border-yellow: 2px solid #ffff00;
+    --border-magenta: 2px solid #ff00ff;
+    --border-green: 2px solid #00ff00;
+    --focus-ring: 3px solid #ffff00;
+
+    --font-tt: 'VT323', 'Courier New', Courier, monospace;
+    --font-base: 18px;
+    --font-h1: 28px;
+    --font-h2: 22px;
+    --font-h3: 18px;
 }
 
 *, *::before, *::after {
@@ -25,246 +43,592 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-tt);
+    font-size: var(--font-base);
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.4;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    /* CRT scanline overlay */
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.07) 2px,
+        rgba(0, 0, 0, 0.07) 4px
+    );
 }
 
 @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
 }
 
-/* ==========================================================================
-   2. ACCESSIBILITY & FOCUS STATES
-   ========================================================================== */
+/* 2. prieinamumas ir fokuso stiliai */
 .skip-link {
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--accent-color);
+    background: var(--yellow);
     color: #000;
     padding: 8px;
     z-index: 1000;
-    font-weight: bold;
+    font-family: var(--font-tt);
+    font-size: var(--font-base);
+    font-weight: normal;
     text-decoration: none;
+    letter-spacing: 1px;
 }
-
 .skip-link:focus { top: 0; outline: var(--focus-ring); }
 
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, 
-textarea:focus-visible, .table-container:focus-visible, .tuning-card:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.table-container:focus-visible,
+.tuning-card:focus-visible {
     outline: var(--focus-ring);
     outline-offset: 2px;
 }
 
-/* ==========================================================================
-   3. TYPOGRAPHY & LAYOUT
-   ========================================================================== */
-h1 { font-size: var(--font-h1); margin-bottom: 0.5rem; color: var(--accent-color); }
-h2 { font-size: var(--font-h2); margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid var(--text-muted); padding-bottom: 0.5rem; }
-h3 { font-size: var(--font-h3); margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-color); }
-p { margin-bottom: 1rem; }
+/* 3. tipografija */
+h1 {
+    font-family: var(--font-tt);
+    font-size: var(--font-h1);
+    font-weight: normal;
+    color: var(--surface-color);
+    background: var(--cyan);
+    padding: 6px 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+}
 
-.section-divider { border: 0; height: 1px; background: #333; margin: 3rem 0; }
-.mini-divider { border: 0; height: 1px; background: #444; margin: 0.5rem 0; }
+h2 {
+    font-family: var(--font-tt);
+    font-size: var(--font-h2);
+    font-weight: normal;
+    color: var(--yellow);
+    background: var(--red);
+    padding: 3px 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 20px 0 8px;
+    display: block;
+    border: none;
+}
 
+h3 {
+    font-family: var(--font-tt);
+    font-size: var(--font-h3);
+    font-weight: normal;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+h4, h5, h6 {
+    font-family: var(--font-tt);
+    font-weight: normal;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+p { margin-bottom: 10px; }
+
+strong { color: var(--yellow); font-weight: normal; }
+
+a { color: var(--cyan); }
+a:hover { color: var(--yellow); }
+
+.section-divider {
+    border: 0;
+    height: 2px;
+    background: var(--cyan);
+    margin: 24px 0;
+}
+
+.mini-divider {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 6px 0;
+}
+
+/* 4. isdestymas */
 main {
     flex: 1;
-    padding: 2rem;
-    max-width: 1200px; 
+    padding: 20px;
+    max-width: 960px;
     margin: 0 auto;
     width: 100%;
 }
-main.wide-layout { max-width: 95%; padding: 2rem 4rem; }
 
-/* ==========================================================================
-   4. NAVIGATION & FOOTER
-   ========================================================================== */
+main.wide-layout {
+    max-width: 95%;
+    padding: 20px 32px;
+}
+
+/* 5. antraste ir navigacija */
 header {
     background-color: var(--surface-color);
-    padding: 1rem 2rem;
+    padding: 6px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 3px solid var(--cyan);
 }
 
 .logo-container h2 {
-    color: var(--accent-color);
-    font-size: var(--font-h2);
-    letter-spacing: 2px;
+    background: none;
+    color: var(--cyan);
+    font-size: 26px;
+    letter-spacing: 4px;
     text-transform: uppercase;
+    margin: 0;
+    padding: 0;
 }
 
-#main-nav ul { list-style: none; display: flex; gap: 1.5rem; }
+/* puslapio numeris antrašteje, pvz. P100 */
+.page-num {
+    font-family: var(--font-tt);
+    font-size: 20px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+}
+
+#main-nav ul { list-style: none; display: flex; gap: 4px; }
+
 #main-nav a {
-    color: var(--text-color);
+    font-family: var(--font-tt);
+    font-size: 18px;
+    color: var(--green);
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 0.5rem;
-    border-bottom: 2px solid transparent;
-    transition: color 0.3s, border-bottom 0.3s;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border: 2px solid transparent;
+    letter-spacing: 1px;
+    transition: background 0.1s;
 }
-#main-nav a:hover { color: var(--accent-color); }
-#main-nav a.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
+#main-nav a:hover {
+    background: #004400;
+    color: var(--green);
+    border-color: var(--green);
+}
+
+#main-nav a.active {
+    background: var(--green);
+    color: var(--surface-color);
+    border-color: var(--green);
+}
+
+/* 6. apacia */
 footer {
     background-color: var(--surface-color);
     text-align: center;
-    padding: 1.5rem;
-    border-top: 1px solid #333;
+    padding: 8px;
+    border-top: 2px solid var(--cyan);
     color: var(--text-muted);
+    font-family: var(--font-tt);
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     margin-top: auto;
 }
 
-/* ==========================================================================
-   5. COMPONENTS (Buttons, Lists, Tables, Cards)
-   ========================================================================== */
-/* Buttons */
-.jump-btn, .back-btn, .submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    transition: all 0.2s ease-in-out;
+/* mirksintis kursorius apačioje */
+footer::after {
+    content: " █";
+    animation: tt-blink 1s step-end infinite;
+    color: var(--cyan);
+}
+
+@keyframes tt-blink {
+    50% { opacity: 0; }
+}
+
+/* 7. mygtukai ir nuorodos */
+.jump-btn, .back-btn {
+    display: inline-block;
+    font-family: var(--font-tt);
+    font-size: 14px;
+    font-weight: normal;
+    background: var(--red);
+    color: var(--yellow);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1px 8px;
+    border: none;
+    margin-left: 6px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    line-height: 1.3;
+}
+
+.jump-btn:hover, .back-btn:hover {
+    background: var(--yellow);
+    color: var(--surface-color);
+}
+
+.submit-btn {
+    display: inline-block;
+    font-family: var(--font-tt);
+    font-size: 20px;
+    font-weight: normal;
+    background: var(--green);
+    color: var(--surface-color);
+    border: none;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     cursor: pointer;
 }
 
-.jump-btn, .back-btn {
-    background-color: transparent;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    margin-left: 10px;
-    line-height: 1;
+.submit-btn:hover {
+    background: var(--yellow);
+    color: var(--surface-color);
 }
-.jump-btn:hover, .back-btn:hover { background-color: var(--accent-color); color: #000; box-shadow: 0 0 8px var(--accent-color); }
 
-/* Bolt Lists */
-.bolt-list { list-style: none; padding-left: 1.2rem; }
-.bolt-list li { margin-bottom: 0.5rem; position: relative; }
-.bolt-list li::before { content: "•"; color: var(--accent-color); position: absolute; left: -1.2rem; font-weight: bold; }
+/* 8. sarasai */
+.bolt-list {
+    list-style: none;
+    padding-left: 20px;
+}
 
-/* Tables */
-.table-container { overflow-x: auto; margin-bottom: 2rem; border-radius: 8px; }
-.specs-table, .tuning-table { width: 100%; border-collapse: collapse; background: var(--surface-color); text-align: left; }
-.specs-table caption, .tuning-table caption { padding: 0.5rem; font-style: italic; color: var(--text-muted); text-align: left; }
-th, td { padding: 1rem; border-bottom: 1px solid #333; }
-thead th { background-color: #2a2a2a; color: var(--accent-color); font-weight: bold; }
-tbody th { font-weight: 600; color: #ddd; }
-tbody tr:hover { background-color: #252525; }
+.bolt-list li {
+    margin-bottom: 4px;
+    position: relative;
+    font-size: 16px;
+}
 
-/* Forms */
-.support-form-section { background: var(--surface-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem; }
-.form-group { margin-bottom: 1.5rem; }
-label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--accent-color); }
-.help-text { display: block; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
-input[type="text"], select, textarea { width: 100%; padding: 0.75rem; border: 1px solid #444; border-radius: 4px; background-color: #2a2a2a; color: var(--text-color); font-family: inherit; font-size: var(--font-base); }
-.submit-btn { background-color: var(--accent-color); color: #000; border: none; padding: 0.75rem 1.5rem; font-size: 1.1rem; border-radius: 4px; }
-.submit-btn:hover { background-color: var(--accent-hover); }
+.bolt-list li::before {
+    content: "»";
+    color: var(--yellow);
+    position: absolute;
+    left: -18px;
+}
 
-/* ==========================================================================
-   6. PAGE SPECIFIC STYLES (Index & Parts)
-   ========================================================================== */
-/* Index Hero */
-.hero-section { text-align: center; margin-bottom: 3rem; }
-.hero-image { max-width: 100%; height: auto; border-radius: 8px; margin-top: 1.5rem; border: 2px solid var(--surface-color); box-shadow: 0 4px 6px rgba(0,0,0,0.5); }
+/* 9. lenteles */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 16px;
+    border: var(--border-cyan);
+}
 
-/* Parts Layouts */
-.parts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
-.parts-category { background: var(--surface-color); padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
+.specs-table, .tuning-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface-color);
+    text-align: left;
+    font-family: var(--font-tt);
+    font-size: 16px;
+}
+
+.specs-table caption, .tuning-table caption {
+    padding: 4px 8px;
+    color: var(--text-muted);
+    text-align: left;
+    font-size: 14px;
+    background: var(--surface-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+th, td { padding: 6px 12px; border-bottom: 1px solid #333; }
+
+thead th {
+    background-color: var(--bg-color);
+    color: var(--cyan);
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--cyan);
+}
+
+tbody th {
+    font-weight: normal;
+    color: var(--yellow);
+}
+
+tbody tr:nth-child(odd)  { background-color: var(--surface-alt); }
+tbody tr:nth-child(even) { background-color: var(--surface-color); }
+tbody tr:hover { background-color: #002200; }
+
+/* 10. kontaktu forma */
+.support-form-section {
+    background: var(--surface-color);
+    padding: 16px;
+    border: var(--border-magenta);
+    margin-bottom: 20px;
+}
+
+.form-group { margin-bottom: 14px; }
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-tt);
+    font-size: 16px;
+    color: var(--magenta);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.help-text {
+    display: block;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid var(--green);
+    background-color: var(--surface-alt);
+    color: var(--green);
+    font-family: var(--font-tt);
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #336633;
+}
+
+select option { background: var(--surface-alt); color: var(--green); }
+
+.checklist-section {
+    background: var(--surface-color);
+    border: var(--border-yellow);
+    padding: 16px;
+}
+
+.checklist-section ul { list-style: none; padding-left: 20px; }
+
+.checklist-section li {
+    position: relative;
+    padding: 2px 0;
+    font-size: 16px;
+}
+
+.checklist-section li::before {
+    content: "[ ] ";
+    color: var(--cyan);
+    position: absolute;
+    left: -20px;
+}
+
+/* 11. pagrindinis blokas (index.html) */
+.hero-section {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.hero-section h2 {
+    background: var(--yellow);
+    color: var(--surface-color);
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 16px;
+    border: 3px solid var(--cyan);
+    image-rendering: pixelated;
+}
+
+.intro-section {
+    background: var(--surface-color);
+    border: var(--border-cyan);
+    padding: 16px;
+}
+
+/* 12. daliu puslapis -- tinklelis ir korteles */
+.parts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 16px;
+}
+
+.parts-category {
+    background: var(--surface-color);
+    padding: 14px;
+    border: var(--border-cyan);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+}
+
 .parts-content { flex: 1; }
-.parts-image-container { width: 120px; flex-shrink: 0; }
-.category-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #444; }
 
-.tuning-card { background: var(--surface-color); padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-color); border-radius: 4px; display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; }
-.tuning-card ol, .tuning-card ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-.tuning-image img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid #444; }
+.parts-image-container {
+    width: 110px;
+    flex-shrink: 0;
+}
 
-/* ==========================================================================
-   7. ADVANCED CSS-ONLY FILTERING LOGIC (Cleaned up)
-   ========================================================================== */
-input.filter-cb { position: absolute; opacity: 0; pointer-events: none; }
+.category-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--cyan);
+    image-rendering: pixelated;
+}
+
+/* 13. derinimo korteles */
+.tuning-card {
+    background: var(--surface-color);
+    padding: 14px;
+    margin-bottom: 14px;
+    border-left: 4px solid var(--yellow);
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+    align-items: start;
+}
+
+.tuning-card ol,
+.tuning-card ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.tuning-card li { margin-bottom: 4px; }
+
+.tuning-image img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--cyan);
+    image-rendering: pixelated;
+}
+
+/* 14. tik CSS filtravimo sistema -- valdo sekciju rodyma be JavaScript */
+input.filter-cb {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
 
 .sticky-filter {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(18, 18, 18, 0.95);
-    backdrop-filter: blur(5px);
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--accent-color);
+    background-color: rgba(0, 0, 0, 0.96);
+    padding: 8px 0;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--cyan);
 }
-.filter-summary { cursor: pointer; font-size: 1.2rem; font-weight: bold; color: var(--accent-color); list-style: none; display: inline-flex; align-items: center; padding: 0.5rem 0; }
+
+.filter-summary {
+    cursor: pointer;
+    font-family: var(--font-tt);
+    font-size: 20px;
+    color: var(--cyan);
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .filter-summary::-webkit-details-marker { display: none; }
-.filter-summary::before { content: "▼"; margin-right: 0.5rem; font-size: 0.8rem; transition: transform 0.3s ease; }
+.filter-summary::before {
+    content: "▼ ";
+    margin-right: 6px;
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
 .sticky-filter[open] .filter-summary::before { transform: rotate(180deg); }
 
-.filter-controls { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-.filter-controls label { cursor: pointer; padding: 0.5rem 1.5rem; background-color: var(--surface-color); border: 1px solid var(--accent-color); border-radius: 4px; font-weight: bold; transition: all 0.2s ease; user-select: none; }
-.filter-controls label:hover { background-color: rgba(92, 225, 230, 0.1); }
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
 
-/* Focus and Checked States for Labels */
-input.filter-cb:focus-visible ~ .sticky-filter label { outline: var(--focus-ring); outline-offset: 2px; }
+.filter-controls label {
+    cursor: pointer;
+    padding: 3px 14px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-family: var(--font-tt);
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.1s;
+    user-select: none;
+}
+
+.filter-controls label:hover { background-color: #003333; }
+
+input.filter-cb:focus-visible ~ .sticky-filter label {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+}
+
 main:has(#filter-engine:checked) label[for="filter-engine"],
 main:has(#filter-chassis:checked) label[for="filter-chassis"],
 main:has(#filter-body:checked) label[for="filter-body"],
 main:has(#filter-trim:checked) label[for="filter-trim"] {
-    background-color: var(--accent-color); color: #000; box-shadow: 0 0 10px rgba(92, 225, 230, 0.4);
+    background-color: var(--cyan);
+    color: var(--surface-color);
+    border-color: var(--cyan);
 }
 
-/* --- THE FILTERING MAGIC --- */
-/* 1. If ANY filter is checked, hide all filterable items by default */
 main:has(.filter-cb:checked) .filterable-item { display: none; }
 
-/* 2. Show matched categories based on checked filters */
 main:has(#filter-engine:checked) .cat-engine.parts-category { display: flex; }
-main:has(#filter-engine:checked) .cat-engine.tuning-card { display: grid; }
+main:has(#filter-engine:checked) .cat-engine.tuning-card     { display: grid; }
 
 main:has(#filter-chassis:checked) .cat-chassis.parts-category { display: flex; }
-main:has(#filter-chassis:checked) .cat-chassis.tuning-card { display: grid; }
+main:has(#filter-chassis:checked) .cat-chassis.tuning-card    { display: grid; }
 
 main:has(#filter-body:checked) .cat-body.parts-category { display: flex; }
-main:has(#filter-trim:checked) .cat-trim { display: block; }
+main:has(#filter-trim:checked) .cat-trim                { display: block; }
 
-/* 3. Hide entire sections if their related filters are NOT active */
-/* Parts Index only needs Engine, Chassis, or Body */
 main:has(.filter-cb:checked):not(:has(#filter-engine:checked)):not(:has(#filter-chassis:checked)):not(:has(#filter-body:checked)) #parts-index {
     display: none;
 }
-/* Tuning Section only needs Engine or Chassis */
 main:has(.filter-cb:checked):not(:has(#filter-engine:checked)):not(:has(#filter-chassis:checked)) #tuning-section {
     display: none;
 }
-/* Hide dividers to keep layout clean when filtering */
-main:has(.filter-cb:checked) .section-divider {
-    display: none;
+main:has(.filter-cb:checked) .section-divider { display: none; }
+
+.filterable-item { animation: tt-fadein 0.2s ease-in-out; }
+@keyframes tt-fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-.filterable-item { animation: fadeIn 0.4s ease-in-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ==========================================================================
-   8. RESPONSIVE DESIGN (Mobile)
-   ========================================================================== */
+/* 15. reagavimas i ekrano dydi */
 @media (max-width: 850px) {
-    header { flex-direction: column; gap: 1rem; }
+    header { flex-direction: column; gap: 8px; }
     #main-nav ul { flex-wrap: wrap; justify-content: center; }
-    main.wide-layout { padding: 1rem; max-width: 100%; }
+    main.wide-layout { padding: 12px; max-width: 100%; }
     .parts-grid { grid-template-columns: 1fr; }
-    
     .parts-category { flex-direction: column-reverse; }
-    .parts-image-container { width: 100%; margin-bottom: 1rem; }
+    .parts-image-container { width: 100%; margin-bottom: 8px; }
     .tuning-card { grid-template-columns: 1fr; }
-    .tuning-image { margin-top: 1rem; width: 100%; max-width: 400px; }
+    .tuning-image { margin-top: 10px; width: 100%; max-width: 360px; }
 }

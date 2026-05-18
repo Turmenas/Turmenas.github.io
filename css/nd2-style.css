@@ -1,0 +1,798 @@
+/* ==========================================================================
+   CORRIS RIVETT WORKSHOP MANUAL
+   nd2-style.css — ND2 Pages Stylesheet
+   
+   Applies to: vin.html (P400 Amber Channel), buildlog.html (P500 Green Channel)
+   Requires:   variables.css to be loaded first
+   
+   Each page section is labelled with its channel:
+     [P400] = Amber — VIN Decoder
+     [P500] = Green — Build Log
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* NOTE: variables.css is NOT imported here — it is linked separately
+   in the HTML <head> before this stylesheet, so tokens are already
+   available when this file is parsed. Linking in HTML avoids a
+   double-load and ensures compatibility with stricter CSS parsers. */
+
+/* 1. nustatymai ir bazė */
+
+/* dežutes modelio nustatymas -- taikomas visur */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* gerbiame vartotojo animacijos nustatymus */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+
+/* kuno numatytieji stiliai -- kanalo spalva taikoma per .channel-amber arba .channel-green */
+body {
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-base);
+    color: var(--tt-white);
+    line-height: 1.4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* CRT ekrano liniju efektas */
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.07) 2px,
+        rgba(0, 0, 0, 0.07) 4px
+    );
+}
+
+/* P400 -- gintarinis kanalas */
+body.channel-amber {
+    background-color: var(--amber-bg);
+    color: var(--amber-text);
+}
+
+/* P500 -- zalias kanalas */
+body.channel-green {
+    background-color: var(--green-bg);
+    color: var(--green-text);
+}
+
+/* 2. prieinamumas */
+
+/* praleidimo nuoroda -- paslepta kol negauna fokuso */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--tt-yellow);
+    color: var(--tt-black);
+    padding: 8px;
+    z-index: 1000;
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-base);
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.skip-link:focus { top: 0; outline: var(--tt-focus-ring); }
+
+/* fokuso ziedas visiems interaktyviems elementams */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: var(--tt-focus-ring);
+    outline-offset: 2px;
+}
+
+/* 3. tipografija */
+
+/* H1 -- spalvotas juostelės blokas visu plotu */
+h1 {
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-xl);
+    font-weight: normal;
+    padding: 6px 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* P400 H1 -- gintarinis blokas */
+.channel-amber h1 {
+    background: var(--amber-accent-primary);
+    color: var(--amber-bg);
+}
+
+/* P500 H1 -- zalias blokas */
+.channel-green h1 {
+    background: var(--green-accent-primary);
+    color: var(--green-bg);
+}
+
+/* H2 -- sekcijos antraštes juostele */
+h2 {
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-lg);
+    font-weight: normal;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 20px 0 8px;
+    display: block;
+    border: none;
+}
+
+/* P400 H2 -- oranzine juostele */
+.channel-amber h2 {
+    background: var(--amber-accent-secondary);
+    color: var(--tt-yellow);
+}
+
+/* P500 H2 -- raudona juostele */
+.channel-green h2 {
+    background: var(--tt-red);
+    color: var(--tt-yellow);
+}
+
+/* H3 -- poskyrių etikete */
+h3 {
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-base);
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.channel-amber h3 { color: var(--amber-accent-primary); }
+.channel-green h3 { color: var(--green-accent-primary); }
+
+p { margin-bottom: 10px; }
+
+/* Strong text colour per channel */
+.channel-amber strong { color: var(--tt-yellow); font-weight: normal; }
+.channel-green strong  { color: var(--green-accent-secondary); font-weight: normal; }
+
+/* 4. isdestymas */
+
+main {
+    flex: 1;
+    padding: var(--tt-space-lg);
+    max-width: var(--tt-max-width);
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* skiriamoji linija tarp sekciju */
+.section-divider {
+    border: 0;
+    height: 2px;
+    margin: var(--tt-space-lg) 0;
+}
+
+.channel-amber .section-divider { background: var(--amber-accent-primary); }
+.channel-green  .section-divider { background: var(--green-accent-primary); }
+
+/* 5. antraste ir navigacija */
+
+header {
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* P400 antraste -- gintarinis kanalas */
+.channel-amber header {
+    background-color: var(--amber-surface);
+    border-bottom: 3px solid var(--amber-accent-primary);
+}
+
+/* P500 antraste -- zalias kanalas */
+.channel-green header {
+    background-color: var(--green-surface);
+    border-bottom: 3px solid var(--green-accent-primary);
+}
+
+/* logotipo tekstas */
+.logo-container h2 {
+    font-size: 26px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.channel-amber .logo-container h2 { color: var(--amber-accent-primary); }
+.channel-green  .logo-container h2 { color: var(--green-accent-primary); }
+
+/* puslapio numeris -- pvz. P400 */
+.page-num {
+    font-family: var(--tt-font);
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.channel-amber .page-num { color: var(--tt-yellow); }
+.channel-green  .page-num { color: var(--tt-yellow); }
+
+/* navigacijos sarasas */
+#main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+}
+
+/* navigacijos nuorodos */
+#main-nav a {
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-base);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border: 2px solid transparent;
+    letter-spacing: 1px;
+    transition: background 0.1s;
+}
+
+/* P400 navigacija -- gintarinis kanalas */
+.channel-amber #main-nav a {
+    color: var(--amber-accent-action);
+}
+.channel-amber #main-nav a:hover {
+    background: #2a1500;
+    border-color: var(--amber-accent-action);
+}
+.channel-amber #main-nav a.active {
+    background: var(--amber-accent-primary);
+    color: var(--amber-bg);
+    border-color: var(--amber-accent-primary);
+}
+
+/* P500 navigacija -- zalias kanalas */
+.channel-green #main-nav a {
+    color: var(--green-accent-action);
+}
+.channel-green #main-nav a:hover {
+    background: #001a00;
+    border-color: var(--green-accent-action);
+}
+.channel-green #main-nav a.active {
+    background: var(--green-accent-primary);
+    color: var(--green-bg);
+    border-color: var(--green-accent-primary);
+}
+
+/* 6. apacia */
+
+footer {
+    text-align: center;
+    padding: 8px;
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-xs);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: auto;
+}
+
+.channel-amber footer {
+    background-color: var(--amber-surface);
+    border-top: 2px solid var(--amber-accent-primary);
+    color: var(--amber-text-muted);
+}
+
+.channel-green footer {
+    background-color: var(--green-surface);
+    border-top: 2px solid var(--green-accent-primary);
+    color: var(--green-text-muted);
+}
+
+/* mirksintis kursorius apačioje */
+footer::after {
+    content: " █";
+    animation: tt-blink 1s step-end infinite;
+}
+
+.channel-amber footer::after { color: var(--amber-accent-primary); }
+.channel-green  footer::after { color: var(--green-accent-primary); }
+
+@keyframes tt-blink { 50% { opacity: 0; } }
+
+/* 7. mygtukai */
+
+/* bazinis mygtuko nustatymas */
+.tt-btn {
+    display: inline-block;
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-base);
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    padding: 6px 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* P400 pagrindinis mygtukas */
+.channel-amber .tt-btn-primary {
+    background: var(--amber-accent-primary);
+    color: var(--amber-bg);
+}
+.channel-amber .tt-btn-primary:hover {
+    background: var(--amber-accent-action);
+    color: var(--tt-black);
+}
+
+/* P400 antrinis mygtukas */
+.channel-amber .tt-btn-secondary {
+    background: var(--amber-surface-alt);
+    color: var(--amber-accent-primary);
+    border: 1px solid var(--amber-accent-primary);
+}
+.channel-amber .tt-btn-secondary:hover {
+    background: var(--amber-accent-primary);
+    color: var(--amber-bg);
+}
+
+/* P500 pagrindinis mygtukas */
+.channel-green .tt-btn-primary {
+    background: var(--green-accent-primary);
+    color: var(--green-bg);
+}
+.channel-green .tt-btn-primary:hover {
+    background: var(--green-accent-secondary);
+    color: var(--tt-black);
+}
+
+/* P500 pavojaus mygtukas */
+.channel-green .tt-btn-danger {
+    background: var(--tt-red);
+    color: var(--tt-yellow);
+}
+.channel-green .tt-btn-danger:hover {
+    background: var(--tt-yellow);
+    color: var(--tt-black);
+}
+
+/* P500 antrinis mygtukas */
+.channel-green .tt-btn-secondary {
+    background: var(--green-surface-alt);
+    color: var(--green-accent-action);
+    border: 1px solid var(--green-accent-action);
+}
+.channel-green .tt-btn-secondary:hover {
+    background: var(--green-accent-action);
+    color: var(--green-bg);
+}
+
+/* 8. formos elementai -- P400 VIN dekoderis */
+
+/* VIN ivesties blokas */
+.vin-input-section {
+    border: var(--tt-border-amber);
+    padding: var(--tt-space-md);
+    margin-bottom: var(--tt-space-lg);
+    background: var(--amber-surface);
+}
+
+/* etikete virs ivesties lauko */
+.vin-label {
+    display: block;
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-lg);
+    color: var(--amber-accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--tt-space-sm);
+}
+
+/* VIN ivesties laukas */
+.vin-field {
+    width: 100%;
+    background: var(--amber-surface-alt);
+    color: var(--amber-accent-action);
+    border: 1px solid var(--amber-accent-primary);
+    font-family: var(--tt-font);
+    font-size: 28px;           /* Large — VIN characters need to be readable */
+    letter-spacing: 4px;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    margin-bottom: var(--tt-space-sm);
+}
+
+.vin-field::placeholder { color: var(--amber-accent-dim); }
+
+/* simboliu skaitiklis po lauku */
+.vin-counter {
+    font-size: var(--tt-font-size-sm);
+    color: var(--amber-text-muted);
+    letter-spacing: 1px;
+}
+
+/* 9. VIN dekodavimo rezultatai -- P400 */
+
+/* rezultatu konteineris -- pasleptas kol neidekodavus */
+.vin-result {
+    display: none;            /* Hidden until JS decodes a valid VIN */
+    margin-top: var(--tt-space-lg);
+}
+
+/* matoma busena -- ijungiama JS */
+.vin-result.visible { display: block; }
+
+/* tinklelis su dekodavimo kortelemis */
+.vin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--tt-space-sm);
+    margin-top: var(--tt-space-md);
+}
+
+/* viena dekodavimo kortele */
+.vin-card {
+    background: var(--amber-surface);
+    border-left: 4px solid var(--amber-accent-primary);
+    border-top: 1px solid var(--amber-accent-dim);
+    border-right: 1px solid var(--amber-accent-dim);
+    border-bottom: 1px solid var(--amber-accent-dim);
+    padding: var(--tt-space-sm) var(--tt-space-md);
+}
+
+/* lauko numeris, pvz. FIELD 04 */
+.vin-card-label {
+    font-size: var(--tt-font-size-xs);
+    color: var(--amber-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* lauko pavadinimas */
+.vin-card-name {
+    font-size: var(--tt-font-size-sm);
+    color: var(--amber-accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* isdekodavus gauta reiksme */
+.vin-card-value {
+    font-size: var(--tt-font-size-lg);
+    color: var(--tt-yellow);
+    text-transform: uppercase;
+    display: block;
+}
+
+/* originalus kodas mazo teksto formatu */
+.vin-card-code {
+    font-size: var(--tt-font-size-xs);
+    color: var(--amber-text-muted);
+    display: block;
+    margin-top: 2px;
+}
+
+/* klaidos busena -- nežinomas simbolis */
+.vin-card.error .vin-card-value { color: var(--tt-red); }
+
+/* validacijos klaidos pranešimas */
+.vin-error {
+    display: none;
+    background: var(--tt-red);
+    color: var(--tt-yellow);
+    padding: 8px 12px;
+    font-size: var(--tt-font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: var(--tt-space-sm);
+}
+
+.vin-error.visible { display: block; }
+
+/* 10. surinkimo zurnalas -- P500 */
+
+/* Progress bar wrapper */
+.progress-wrapper {
+    background: var(--green-surface);
+    border: var(--tt-border-green);
+    padding: var(--tt-space-md);
+    margin-bottom: var(--tt-space-lg);
+}
+
+/* progreso juosteles takas */
+.progress-track {
+    background: var(--green-surface-alt);
+    border: 1px solid var(--green-accent-dim);
+    height: 24px;
+    width: 100%;
+    margin: var(--tt-space-sm) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* progreso uzpildas -- plotis valdomas JS */
+.progress-fill {
+    height: 100%;
+    background: var(--green-accent-primary);
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* procento tekstas */
+.progress-label {
+    font-size: var(--tt-font-size-lg);
+    color: var(--green-accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* sekcijos kortele -- vienas surinkimo etapas */
+.log-section {
+    background: var(--green-surface);
+    border-left: 4px solid var(--green-accent-primary);
+    border-top: 1px solid var(--green-accent-dim);
+    border-right: 1px solid var(--green-accent-dim);
+    border-bottom: 1px solid var(--green-accent-dim);
+    margin-bottom: var(--tt-space-md);
+    overflow: hidden;
+}
+
+/* paspaudziama antraste -- sulankstyti arba issklesti */
+.log-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--tt-space-sm) var(--tt-space-md);
+    cursor: pointer;
+    background: var(--green-surface-alt);
+    border-bottom: 1px solid var(--green-accent-dim);
+    user-select: none;
+}
+
+.log-section-header:hover { background: #002200; }
+
+/* sekcijos pavadinimas antrašteje */
+.log-section-title {
+    font-size: var(--tt-font-size-lg);
+    color: var(--green-accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* baigtumo skaitiklis, pvz. 3/12 DONE */
+.log-section-count {
+    font-size: var(--tt-font-size-sm);
+    color: var(--green-accent-secondary);
+    letter-spacing: 1px;
+}
+
+/* sulankstytas zingsniu sarasas */
+.log-step-list {
+    list-style: none;
+    padding: var(--tt-space-sm) var(--tt-space-md);
+    display: block;               /* JS toggles to none when collapsed */
+}
+
+/* viena zingsnio eilute */
+.log-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--tt-space-sm);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--green-accent-dim);
+    font-size: var(--tt-font-size-sm);
+    cursor: pointer;
+}
+
+.log-step:last-child { border-bottom: none; }
+.log-step:hover { background: #001500; }
+
+/* checkbox stilius */
+.log-step input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--green-accent-primary);
+    background: var(--green-surface);
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* pazymeta busena -- rodo X */
+.log-step input[type="checkbox"]:checked {
+    background: var(--green-accent-primary);
+}
+.log-step input[type="checkbox"]:checked::after {
+    content: "X";
+    color: var(--green-bg);
+    font-family: var(--tt-font);
+    font-size: 14px;
+    position: absolute;
+    top: -2px;
+    left: 2px;
+}
+
+/* zingsnio tekstas -- perbraukiamas kai pazymeta */
+.log-step-text {
+    color: var(--green-text);
+    flex: 1;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.log-step.done .log-step-text {
+    color: var(--green-text-muted);
+    text-decoration: line-through;
+}
+
+/* veiksmu juostele -- Reset ir Copy mygtukai */
+.log-actions {
+    display: flex;
+    gap: var(--tt-space-sm);
+    margin-bottom: var(--tt-space-lg);
+    flex-wrap: wrap;
+}
+
+/* issaugojimo rodiklis -- matomas trumpai po issaugojimo */
+.save-indicator {
+    font-size: var(--tt-font-size-sm);
+    color: var(--green-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-self: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.save-indicator.visible { opacity: 1; }
+
+/* 11. lenteles -- naudojamos abiejuose puslapiuose */
+
+.tt-table-wrap {
+    overflow-x: auto;
+    margin-bottom: var(--tt-space-md);
+}
+
+.tt-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--tt-font);
+    font-size: var(--tt-font-size-sm);
+    text-align: left;
+}
+
+/* P400 lentele -- gintarinis kanalas */
+.channel-amber .tt-table-wrap { border: var(--tt-border-amber); }
+.channel-amber .tt-table thead th {
+    background: var(--amber-surface-alt);
+    color: var(--amber-accent-primary);
+    border-bottom: 2px solid var(--amber-accent-primary);
+    padding: 6px 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+.channel-amber .tt-table tbody td,
+.channel-amber .tt-table tbody th {
+    padding: 5px 12px;
+    border-bottom: 1px solid var(--amber-accent-dim);
+    font-weight: normal;
+}
+.channel-amber .tt-table tbody th { color: var(--tt-yellow); }
+.channel-amber .tt-table tbody tr:nth-child(odd)  { background: var(--amber-surface-alt); }
+.channel-amber .tt-table tbody tr:nth-child(even) { background: var(--amber-surface); }
+
+/* P500 lentele -- zalias kanalas */
+.channel-green .tt-table-wrap { border: var(--tt-border-green); }
+.channel-green .tt-table thead th {
+    background: var(--green-surface-alt);
+    color: var(--green-accent-primary);
+    border-bottom: 2px solid var(--green-accent-primary);
+    padding: 6px 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+.channel-green .tt-table tbody td,
+.channel-green .tt-table tbody th {
+    padding: 5px 12px;
+    border-bottom: 1px solid var(--green-accent-dim);
+    font-weight: normal;
+}
+.channel-green .tt-table tbody th { color: var(--green-accent-secondary); }
+.channel-green .tt-table tbody tr:nth-child(odd)  { background: var(--green-surface-alt); }
+.channel-green .tt-table tbody tr:nth-child(even) { background: var(--green-surface); }
+
+/* 12. Bootstrap perstumiai -- isvengti konflikto su teletext stiliumi */
+
+/* Bootstrap ivesties stiliu perstumiai -- islaiko teletext isvaizdą */
+.channel-amber .form-control,
+.channel-amber .form-select {
+    background-color: var(--amber-surface-alt) !important;
+    color: var(--amber-text) !important;
+    border-color: var(--amber-accent-primary) !important;
+    font-family: var(--tt-font) !important;
+    font-size: var(--tt-font-size-base) !important;
+    border-radius: 0 !important;
+}
+
+.channel-green .form-control,
+.channel-green .form-select {
+    background-color: var(--green-surface-alt) !important;
+    color: var(--green-text) !important;
+    border-color: var(--green-accent-primary) !important;
+    font-family: var(--tt-font) !important;
+    font-size: var(--tt-font-size-base) !important;
+    border-radius: 0 !important;
+}
+
+/* Bootstrap badge perstumiai -- teletext isvaizdai */
+.channel-amber .badge { border-radius: 0 !important; font-family: var(--tt-font) !important; }
+.channel-green  .badge { border-radius: 0 !important; font-family: var(--tt-font) !important; }
+
+/* 13. reagavimas i ekrano dydi -- desktop / plansete / telefonas */
+
+/* planšete -- iki 850px */
+@media (max-width: 850px) {
+
+    /* antraste vertikaliai */
+    header {
+        flex-direction: column;
+        gap: var(--tt-space-sm);
+    }
+
+    /* navigacija centre */
+    #main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* mazesnis tarpo plotis */
+    main { padding: var(--tt-space-md); }
+
+    /* VIN tinklelis viena stulpeliu */
+    .vin-grid { grid-template-columns: 1fr; }
+
+    /* veiksmu mygtukai risuojasi */
+    .log-actions { flex-direction: column; }
+}
+
+/* telefonas -- iki 480px */
+@media (max-width: 480px) {
+
+    /* mazesnis sriftas mažuose ekranuose */
+    body { font-size: 16px; }
+
+    /* mazesnis VIN ivesties sriftas */
+    .vin-field { font-size: 20px; letter-spacing: 2px; }
+
+    /* mazesnis progreso tekstas */
+    .progress-label { font-size: var(--tt-font-size-base); }
+
+    /* mazesnis sekcijos antraštes tarps */
+    .log-section-header { padding: var(--tt-space-xs) var(--tt-space-sm); }
+
+    /* mazesnis sarasas tarpas */
+    .log-step-list { padding: var(--tt-space-xs) var(--tt-space-sm); }
+
+    /* paslepti puslapio numeri labai mažuose ekranuose */
+    .page-num { display: none; }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO meta tags -->
+    <meta name="description" content="Track your Corris Rivett build progress. Interactive checklist for every assembly stage — engine, chassis, gearbox, interior, wiring, and tuning.">
+    <meta name="keywords" content="Corris Rivett Build Log, Assembly Checklist, My Winter Car, Build Progress, Workshop Tracker">
+    <meta name="author" content="Turmenas">
+    <title>P500 Build Log | Corris Rivett Manual</title>
+
+    <!-- Bootstrap 5 — used for progress bar component and utility classes -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- ND2 stylesheet (imports variables.css internally) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/nd2-style.css">
+</head>
+
+<!-- channel-green applies the P500 green phosphor colour scheme -->
+<body class="channel-green">
+
+    <!-- Skip link for keyboard / screen reader accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="logo-container">
+            <!-- Site-wide logo -->
+            <h2>CORRIS</h2>
+        </div>
+
+        <!-- Page number indicator — green channel is P500 -->
+        <span class="page-num">P500</span>
+
+        <!-- Main navigation — shared across all 5 pages -->
+        <nav id="main-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="index.html">P100 Home</a></li>
+                <li><a href="parts.html">P200 Parts</a></li>
+                <li><a href="contact.html">P300 Mechanic</a></li>
+                <li><a href="vin.html">P400 VIN</a></li>
+                <li><a href="buildlog.html" class="active" aria-current="page">P500 Build Log</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- Page title banner -->
+        <h1>Workshop Build Log</h1>
+        <p>Track your Corris Rivett assembly progress. Check off each step as you complete it. Progress is saved automatically to your browser.</p>
+
+        <!-- ============================================================
+             PROGRESS BAR SECTION
+             Uses Bootstrap .progress component, overridden for teletext
+        ============================================================ -->
+        <section class="progress-wrapper" aria-labelledby="progress-title">
+            <div class="progress-label">
+                <span id="progress-title">BUILD PROGRESS</span>
+                <!-- Live percentage — updated by JS -->
+                <span id="progress-percent" aria-live="polite">0%</span>
+            </div>
+
+            <!-- 
+                Bootstrap progress bar — we use Bootstrap's .progress and
+                .progress-bar classes here, then override colours in nd2-style.css
+            -->
+            <div
+                class="progress progress-track mt-2"
+                role="progressbar"
+                aria-label="Build completion percentage"
+                aria-valuenow="0"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                id="progress-bar-wrapper"
+            >
+                <div
+                    id="progress-bar"
+                    class="progress-bar progress-fill"
+                    style="width: 0%; background-color: var(--green-accent-primary);"
+                ></div>
+            </div>
+
+            <!-- Step count text — e.g. "12 / 74 STEPS COMPLETED" -->
+            <div id="progress-steps" style="font-size: 15px; color: var(--green-text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 1px;">
+                0 / 0 STEPS COMPLETED
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ACTION BUTTONS
+             Bootstrap .d-flex .gap-2 utility classes used here
+        ============================================================ -->
+        <div class="log-actions d-flex gap-2">
+
+            <!-- Expand all sections -->
+            <button
+                class="tt-btn tt-btn-primary"
+                onclick="expandAll()"
+                aria-label="Expand all sections"
+            >
+                ▼ EXPAND ALL
+            </button>
+
+            <!-- Collapse all sections -->
+            <button
+                class="tt-btn tt-btn-secondary"
+                onclick="collapseAll()"
+                aria-label="Collapse all sections"
+            >
+                ▲ COLLAPSE ALL
+            </button>
+
+            <!-- Copy summary to clipboard -->
+            <button
+                class="tt-btn tt-btn-secondary"
+                onclick="copySummary()"
+                aria-label="Copy build summary to clipboard"
+            >
+                ⎘ COPY SUMMARY
+            </button>
+
+            <!-- Reset / clear all checkboxes -->
+            <button
+                class="tt-btn tt-btn-danger"
+                onclick="confirmReset()"
+                aria-label="Reset all progress"
+            >
+                ✕ RESET ALL
+            </button>
+
+            <!-- Auto-save indicator — shown briefly after each save -->
+            <span id="save-indicator" class="save-indicator" aria-live="polite">
+                ✓ SAVED
+            </span>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ============================================================
+             BUILD LOG SECTIONS
+             Each section = one assembly phase from the manual.
+             Steps are injected by JS from the BUILD_DATA array below,
+             so content is easy to maintain in one place.
+        ============================================================ -->
+        <div id="build-log-container">
+            <!-- JS injects .log-section elements here -->
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ============================================================
+             PARTS PRICE REFERENCE TABLE
+             From the community parts list (AMIS + Fleetari pricing)
+        ============================================================ -->
+        <section aria-labelledby="price-title">
+            <h2 id="price-title">Parts Cost Reference</h2>
+            <p style="color: var(--green-text-muted); font-size: 15px; text-transform: uppercase; letter-spacing: 1px;">
+                Approximate costs for key replacement parts (Fleetari mechanic prices).
+            </p>
+
+            <!-- Bootstrap .table-responsive wraps the teletext table -->
+            <div class="tt-table-wrap table-responsive">
+                <table class="tt-table" aria-label="Parts price reference">
+                    <thead>
+                        <tr>
+                            <th scope="col">Part</th>
+                            <th scope="col">Price (mk)</th>
+                            <th scope="col">Wears Out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">Alternator</th><td>445</td><td>Yes</td></tr>
+                        <tr><th scope="row">Fuel Pump</th><td>240</td><td>Yes</td></tr>
+                        <tr><th scope="row">Head Gasket</th><td>132</td><td>Yes</td></tr>
+                        <tr><th scope="row">Water Pump</th><td>199</td><td>Yes</td></tr>
+                        <tr><th scope="row">Timing Belt</th><td>185</td><td>Yes</td></tr>
+                        <tr><th scope="row">Starter</th><td>825</td><td>Yes</td></tr>
+                        <tr><th scope="row">Distributor</th><td>399</td><td>Yes</td></tr>
+                        <tr><th scope="row">Crankshaft</th><td>8500</td><td>Yes</td></tr>
+                        <tr><th scope="row">Piston Set</th><td>1750</td><td>Yes</td></tr>
+                        <tr><th scope="row">Camshaft</th><td>545</td><td>Yes</td></tr>
+                        <tr><th scope="row">Main Bearing Set</th><td>795</td><td>Yes</td></tr>
+                        <tr><th scope="row">Oil Pump</th><td>239</td><td>Yes</td></tr>
+                        <tr><th scope="row">Clutch Disc</th><td>180</td><td>Yes</td></tr>
+                        <tr><th scope="row">Rocker Set</th><td>529</td><td>Yes</td></tr>
+                        <tr><th scope="row">Thermostat</th><td>59</td><td>No</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 CORRIS AUTOMOBILES CO. LTD | GUIDE BY DYNOSAW | SITE BY TURMENAS</p>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Build log logic — all JavaScript lives in js/buildlog.js -->
+    <script src="js/buildlog.js"></script>
+
+</body>
+</html>

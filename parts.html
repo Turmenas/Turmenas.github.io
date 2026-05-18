@@ -7,6 +7,7 @@
     <meta name="keywords" content="Corris Rivett parts, Bolt sizes, Engine tuning, Carburettor, Distributor, Wheel alignment, Suspension">
     <meta name="author" content="Turmenas">
     <title>Parts & Bolt Sizes | Corris Rivett Manual</title>
+    <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,11 +18,17 @@
         <div class="logo-container">
             <h2>CORRIS</h2>
         </div>
+
+        <!-- Page number indicator — blue channel P200 -->
+        <span class="page-num">P200</span>
+
         <nav id="main-nav" aria-label="Main Navigation">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="parts.html" class="active" aria-current="page">Parts & Specs</a></li>
-                <li><a href="contact.html">Mechanic's Corner</a></li>
+                <li><a href="index.html">P100 Home</a></li>
+                <li><a href="parts.html" class="active" aria-current="page">P200 Parts</a></li>
+                <li><a href="contact.html">P300 Mechanic</a></li>
+                <li><a href="vin.html">P400 VIN</a></li>
+                <li><a href="buildlog.html">P500 Build Log</a></li>
             </ul>
         </nav>
     </header>
@@ -31,13 +38,11 @@
         <h1>Vehicle Assembly & Bolt Sizes</h1>
         <p>Follow the factory order of operations. Legend: <strong>(Size x Quantity)</strong> | <strong>S = Screwdriver</strong></p>
 
-        <!-- 1. HIDDEN CHECKBOXES (CSS Logic) -->
         <input type="checkbox" id="filter-engine" name="part-filter" class="filter-cb">
         <input type="checkbox" id="filter-chassis" name="part-filter" class="filter-cb">
         <input type="checkbox" id="filter-body" name="part-filter" class="filter-cb">
         <input type="checkbox" id="filter-trim" name="part-filter" class="filter-cb">
 
-        <!-- 2. STICKY EXPANDABLE FILTER MENU -->
         <details class="sticky-filter" open>
             <summary class="filter-summary">Filter Manual Contents</summary>
             <div class="filter-controls">
@@ -48,12 +53,10 @@
             </div>
         </details>
 
-        <!-- 3. PARTS LIST -->
         <section aria-labelledby="parts-index-title" class="parts-index-section" id="parts-index">
             <h2 id="parts-index-title" class="section-title">Comprehensive Parts Index</h2>
             
             <div class="parts-grid">
-                <!-- ENGINE CATEGORY -->
                 <article class="parts-category filterable-item cat-engine">
                     <div class="parts-content">
                         <h3>Engine & Exhaust</h3>
@@ -93,7 +96,6 @@
                     </div>
                 </article>
 
-                <!-- CHASSIS CATEGORY -->
                 <article class="parts-category filterable-item cat-chassis">
                     <div class="parts-content">
                         <h3>Chassis & Gearbox</h3>
@@ -123,7 +125,6 @@
                     </div>
                 </article>
 
-                <!-- BODY CATEGORY -->
                 <article class="parts-category filterable-item cat-body">
                     <div class="parts-content">
                         <h3>Bodywork, Interior & Aux</h3>
@@ -157,7 +158,6 @@
 
         <hr class="section-divider">
 
-        <!-- 4. TUNING GUIDES -->
         <section aria-labelledby="tuning-guides-title" id="tuning-section">
             <h2 id="tuning-guides-title" class="section-title">Tuning Procedures</h2>
 
@@ -289,7 +289,6 @@
 
         </section>
 
-        <!-- 5. TRIM FEATURES TABLE -->
         <section aria-labelledby="specs-title" class="specs-section filterable-item cat-trim">
             <h2 id="specs-title">Model Trim Features</h2>
             <div class="table-container" tabindex="0" role="region" aria-label="Scrollable trim features table">
